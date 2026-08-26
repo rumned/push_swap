@@ -37,10 +37,10 @@ int	main(int ac, char **av)
 	stack_b = (t_list **)malloc(sizeof(t_list *));
 	*stack_a = NULL;
 	*stack_b = NULL;
-	// just to check if this can parse, could delete later
+	/*just to check if this can parse, could delete later*/
+	init_stack(stack_a, ac, av);
 	print_list(*stack_a);
 	print_list(*stack_b);
-	init_stack(stack_a, ac, av);
 	if (is_sorted(stack_a))
 	{
 		free_stack(stack_a);

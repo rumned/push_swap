@@ -74,4 +74,3 @@ void	rrr(t_list **stack_a, t_list **stack_b, t_ops *operation)
 	operation->rrr++;
 	operation->total++;
 }
-
