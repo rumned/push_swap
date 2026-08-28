@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/08/24 20:21:10 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/08/28 16:31:51 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
 
 typedef struct s_list
 {
 	int				value;
 	int				index;
 	struct s_list	*next;
+	struct s_list	*prev;
 }	t_list;
 
 typedef struct s_operation
@@ -37,7 +37,6 @@ typedef struct s_operation
 	int	rra;
 	int	rrb;
 	int	rrr;
-	int	total;
 }		t_ops;
 
 void	ft_free(char **str);
@@ -54,12 +53,10 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(unsigned char c);
+int		ft_atoi(const char *nptr);
 t_list	*ft_lstnew_int(int value);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
-
-/* Edited libft functions*/
-long	ft_atoi(const char *nptr);
 #endif

@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 18:48:27 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/24 19:09:30 by nisim            ###   ########.fr       */
+/*   Updated: 2026/08/28 17:24:22 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	sa(t_list **stack, t_ops *operation, int print)
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
+	if (first->next)
+		first->next->prev = first;
+	second->prev = first->prev;
+	first->prev = second;
+	second->prev = NULL;
 	*stack = second;
 	if (print)
 	{
@@ -43,6 +48,11 @@ void	sb(t_list **stack, t_ops *operation, int print)
 	second = first->next;
 	first->next = second->next;
 	second->next = first;
+	if (first->next)
+		first->next->prev = first;
+	second->prev = first->prev;
+	first->prev = second;
+	second->prev = NULL;
 	*stack = second;
 	if (print)
 	{
