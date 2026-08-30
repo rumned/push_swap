@@ -6,21 +6,18 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:00:16 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/08/24 22:19:28 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/08/30 19:34:02 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// fixed ft_isnum so it doesn't accept "" and "-"
 static int	ft_isnum(char *num)
 {
 	int	i;
 
 	i = 0;
-	if (num[i] == '\0')
-		return (0);
-	if (num[i] == '-' && ft_isdigit(num[i + 1]))
+	if (num[0] == '-')
 		i++;
 	while (num[i])
 	{
@@ -31,9 +28,9 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-/*needs to accept long so it can compare num to temp*/
-static int	ft_arg_is_dup(long num, char **argv, int i)
+static int	ft_contains(long num, char **argv, int i)
 {
+	i++;
 	while (argv[i])
 	{
 		if (ft_atoi(argv[i]) == num)
@@ -62,9 +59,9 @@ void	ft_check_args(int argc, char **argv)
 		tmp = ft_atoi(args[i]);
 		if (!ft_isnum(args[i]))
 			ft_error("Error");
-		if (ft_arg_is_dup(tmp, args, i + 1))
+		if (ft_contains(tmp, args, i))
 			ft_error("Error");
-		if (tmp < INT_MIN || tmp > INT_MAX)
+		if (tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
 		i++;
 	}
@@ -87,7 +84,6 @@ int	is_sorted(t_list **stack)
 	return (1);
 }
 
-// prints out error message to stdout and exits the program
 void	ft_error(char *msg)
 {
 	ft_putendl_fd(msg, 2);

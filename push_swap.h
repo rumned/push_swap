@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/08/28 16:31:51 by nisim            ###   ########.fr       */
+/*   Updated: 2026/08/30 19:29:45 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_operation
 	int	rrb;
 	int	rrr;
 }		t_ops;
+
+typedef struct s_bench
+{
+	float	disorder;
+	char	*strategy;
+	char	*complex_class;
+}	t_bench;
 
 void	ft_free(char **str);
 int		is_sorted(t_list **stack);

@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:13:23 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/30 14:11:42 by nisim            ###   ########.fr       */
+/*   Updated: 2026/08/30 19:30:13 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,3 @@ void	rrr(t_list **stack_a, t_list **stack_b, t_ops *operation)
 	operation->rrr++;
 	operation->total++;
 }
-
