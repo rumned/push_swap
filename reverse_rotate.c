@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:13:23 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/24 21:24:43 by nisim            ###   ########.fr       */
+/*   Updated: 2026/08/30 14:11:42 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	rra(t_list **stack, t_ops *operation, int print)
 {
 	t_list	*first;
 	t_list	*last;
-	t_list	*prev;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
@@ -24,16 +23,15 @@ void	rra(t_list **stack, t_ops *operation, int print)
 	last = first;
 	prev = NULL;
 	while (last->next)
-	{
-		prev = last;
 		last = last->next;
-	}
-	prev->next = NULL;
+	last->prev->next = NULL;
 	last->next = first;
+	first->prev = last;
+	last->prev = NULL;
 	*stack = last;
 	if (print)
 	{
-		write(1, "rra\n", 3);
+		write(1, "rra\n", 4);
 		operation->rra++;
 		operation->total++;
 	}
@@ -43,24 +41,21 @@ void	rrb(t_list **stack, t_ops *operation, int print)
 {
 	t_list	*first;
 	t_list	*last;
-	t_list	*prev;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	first = *stack;
 	last = first;
-	prev = NULL;
 	while (last->next)
-	{
-		prev = last;
 		last = last->next;
-	}
-	prev->next = NULL;
+	last->prev->next = NULL;
 	last->next = first;
+	first->prev = last;
+	last->prev = NULL;
 	*stack = last;
 	if (print)
 	{
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 		operation->rrb++;
 		operation->total++;
 	}
@@ -70,7 +65,8 @@ void	rrr(t_list **stack_a, t_list **stack_b, t_ops *operation)
 {
 	rra(stack_a, operation, 0);
 	rrb(stack_b, operation, 0);
-	write(1, "rrr\n", 3);
+	write(1, "rrr\n", 4);
 	operation->rrr++;
 	operation->total++;
 }
+
