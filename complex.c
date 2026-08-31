@@ -33,10 +33,21 @@ static void	refine_slice(t_list **a, t_list **b, int digit)
 		ra(a);
 }
 
-static void	refine_stack(t_list **a, t_list **b, int count)
+static void	refine_stack(t_list **a, t_list **b, int shift, int count)
 {
+	int	digit;
+	int	i;
+
+	if (!a)
+			return ;
+	i = 0;
+	while (i++ < count)
+	{
+		digit = ((*a)->index >> shift) & 3;
+		refine_slice(a, b, digit);
+	}
 	while (count--)
-		pa
+		pa(a, b);
 }
 
 static void	partition(t_list **a, t_list **b, int shift, int size)
@@ -55,6 +66,7 @@ static void	partition(t_list **a, t_list **b, int shift, int size)
 		count[digit]++;
 		bitwise_slice(a, b, digit);
 	}
+	refine_stack(a, b, shift, count[2]);
 	while (count[1]--)
 		pa(a, b);
 	while (count[0]--)
@@ -62,8 +74,6 @@ static void	partition(t_list **a, t_list **b, int shift, int size)
 		rrb(b);
 		pa(a, b);
 	}
-	while (count[2]--)
-		rra(a);
 }
 
 void	radix_base4(t_list **a, t_list **b)
