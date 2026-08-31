@@ -52,3 +52,19 @@ float	disorder_metric(t_list *stack_a)
 	}
 	return ((float)mistake / total_pairs);
 }
+
+void	init_bench(t_bench *bench)
+{
+	bench.disorder = 0.0;
+	bench.strategy = NULL;
+	bench.complex_class = NULL;
+}
+
+t_bench	calc_disorder(t_list *stack_a)
+{
+	t_bench	bench;
+
+	init_bench(&bench);
+	bench.disorder = disorder_metric(stack_a);
+	return (bench);
+}

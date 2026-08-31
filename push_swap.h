@@ -66,4 +66,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
+
+/* Algorithm functions */
+void	radix_base4(t_list **a, t_list **b);
+
 #endif
