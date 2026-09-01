@@ -64,7 +64,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(unsigned char c);
-int		ft_atoi(const char *nptr);
 t_list	*ft_lstnew_int(int value);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	**ft_split(char const *s, char c);
