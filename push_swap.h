@@ -6,11 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2026/09/01 12:02:33 by nisim            ###   ########.fr       */
-=======
-/*   Updated: 2026/08/27 13:36:54 by mbin-mus         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2026/09/01 19:19:55 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
