@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:41:24 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/01 09:14:32 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/01 20:18:41 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/* after ra, the new head's prev points at the node that just moved to the bottom rather than being NULL*/
 void	ra(t_list **stack, t_ops *operation, int print)
 {
 	t_list	*stack_a;
