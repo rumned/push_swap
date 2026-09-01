@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/01 19:29:57 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/01 19:58:57 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_isdigit(unsigned char c);
-t_list	*ft_lstnew_int(int value);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -89,6 +88,7 @@ void	sort_3(t_list **stack_a, t_ops *operation);
 /* Edited libft functions */
 long	ft_atoi(const char *nptr);
 int		ft_lstsize(t_list *lst);
+t_list	*ft_lstnew_int(int value);
 
 /* Disorder metric */
 int		stack_size(t_list *stack);

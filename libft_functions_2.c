@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:16:22 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/01 18:43:55 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/01 20:09:47 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_list	*ft_lstnew_int(int value)
 	new->value = value;
 	new->index = -1;
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
@@ -67,6 +68,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	while (hldr->next != NULL)
 		hldr = hldr->next;
 	hldr->next = new;
+	new->prev = hldr;
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
