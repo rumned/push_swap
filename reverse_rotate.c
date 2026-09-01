@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:13:23 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/30 19:30:13 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/01 19:02:05 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	rra(t_list **stack, t_ops *operation, int print)
 		return ;
 	first = *stack;
 	last = first;
-	prev = NULL;
 	while (last->next)
 		last = last->next;
 	last->prev->next = NULL;

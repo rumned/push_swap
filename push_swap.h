@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/01 18:23:27 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/01 19:29:57 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,33 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
 
+/* Operations */
+void	pa(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void	pb(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void	ra(t_list **stack, t_ops *operation, int print);
+void	rb(t_list **stack, t_ops *operation, int print);
+void	rr(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void	rra(t_list **stack, t_ops *operation, int print);
+void	rrb(t_list **stack, t_ops *operation, int print);
+void	rrr(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void	sa(t_list **stack, t_ops *operation, int print);
+void	sb(t_list **stack, t_ops *operation, int print);
+void	ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
+
 /* Algorithm functions */
 void	radix_base4(t_list **a, t_list **b, t_ops *operation);
+void	sort_stack(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void	sort_2(t_list **stack_a, t_ops *operation);
+void	sort_3(t_list **stack_a, t_ops *operation);
 
-/* Edited libft functions*/
+/* Edited libft functions */
 long	ft_atoi(const char *nptr);
 int		ft_lstsize(t_list *lst);
+
+/* Disorder metric */
+int		stack_size(t_list *stack);
+float	disorder_metric(t_list *stack_a);
+void	init_bench(t_bench *bench);
+t_bench	calc_disorder(t_list *stack_a);
+
 #endif

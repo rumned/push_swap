@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:16:48 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/24 18:43:54 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/01 19:03:27 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ float	disorder_metric(t_list *stack_a)
 
 void	init_bench(t_bench *bench)
 {
-	bench.disorder = 0.0;
-	bench.strategy = NULL;
-	bench.complex_class = NULL;
+	bench->disorder = 0.0;
+	bench->strategy = NULL;
+	bench->complex_class = NULL;
 }
 
 t_bench	calc_disorder(t_list *stack_a)
