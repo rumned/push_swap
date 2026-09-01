@@ -71,13 +71,10 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
 
-<<<<<<< Updated upstream
 /* Algorithm functions */
 void	radix_base4(t_list **a, t_list **b, t_ops *operation);
 
-=======
 /* Edited libft functions*/
 long	ft_atoi(const char *nptr);
 int		ft_lstsize(t_list *lst);
->>>>>>> Stashed changes
 #endif
