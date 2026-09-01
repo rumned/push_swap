@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:42:53 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/08/24 20:26:23 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/08/27 12:37:12 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ int	main(int ac, char **av)
 {
 	t_list	**stack_a;
 	t_list	**stack_b;
+	t_ops	**operation;
 
 	if (ac < 2)
 		return (-1);
 	ft_check_args(ac, av);
 	stack_a = (t_list **)malloc(sizeof(t_list *));
 	stack_b = (t_list **)malloc(sizeof(t_list *));
+	operation = (t_ops **)malloc(sizeof(t_ops *));
 	*stack_a = NULL;
 	*stack_b = NULL;
 	/*just to check if this can parse, could delete later*/

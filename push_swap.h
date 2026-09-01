@@ -6,7 +6,11 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2026/09/01 12:02:33 by nisim            ###   ########.fr       */
+=======
+/*   Updated: 2026/08/27 13:36:54 by mbin-mus         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +71,13 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
 
+<<<<<<< Updated upstream
 /* Algorithm functions */
 void	radix_base4(t_list **a, t_list **b, t_ops *operation);
 
+=======
+/* Edited libft functions*/
+long	ft_atoi(const char *nptr);
+int		ft_lstsize(t_list *lst);
+>>>>>>> Stashed changes
 #endif
