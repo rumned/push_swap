@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 20:21:46 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/02 20:20:04 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/02 21:15:18 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	clear_split(t_list **a, t_list **b, int pending[3], t_ops *ops)
 	if (digit == 0 || digit == 1)
 	{
 		if (pending[0])
-			ra(a, ops);
+			ra(a, ops, 1);
 		if (pending[1])
-			rb(b, ops);
+			rb(b, ops, 1);
 		pb(a, b, ops);
 		pending[0] = 0;
 		pending[1] = (digit == 0);
@@ -36,7 +36,7 @@ static void	clear_split(t_list **a, t_list **b, int pending[3], t_ops *ops)
 	else if (digit == 2 || digit == 3)
 	{
 		if (pending[0])
-			ra(a, ops);
+			ra(a, ops, 1);
 		pending[0] = 1;
 	}
 }
@@ -51,7 +51,7 @@ static void	bitwise_split(t_list **a, t_list **b, int *count, t_ops *operation)
 
 	i = 0;
 	shift = count[4];
-	size = stack_size(a);
+	size = stack_size(*a);
 	pending[0] = 0;
 	pending[1] = 0;
 	while (i++ < size)
@@ -62,9 +62,9 @@ static void	bitwise_split(t_list **a, t_list **b, int *count, t_ops *operation)
 		clear_split(a, b, pending, operation);
 	}
 	if (pending[0])
-		ra(a, operation);
+		ra(a, operation, 1);
 	if (pending[1])
-		rb(b, operation);
+		rb(b, operation, 1);
 }
 
 static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)
@@ -85,7 +85,7 @@ static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)
 		if (digit == 2)
 			pb(a, b, operation);
 		else if (digit == 3)
-			ra(a, operation);
+			ra(a, operation, 1);
 	}
 	while (count[2]--)
 		pa(a, b, operation);
@@ -94,15 +94,15 @@ static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)
 static void	partition(t_list **a, t_list **b, int shift, t_ops *operation)
 {
 	int	count[5];
-	int	digit;
+	// int	digit;
 	int	i;
 
 	i = 0;
 	while (i++ < 4)
 		count[i] = 0;
 	count[4] = shift;
-	bitwise_split(a, b, &count, operation);
-	refine_stack(a, b, &count, operation);
+	bitwise_split(a, b, count, operation);
+	refine_stack(a, b, count, operation);
 	while (count[1]--)
 		pa(a, b, operation);
 	while (count[0]--)
@@ -115,7 +115,7 @@ void	radix_base4(t_list **a, t_list **b, t_ops *operation)
 	int	max_bits;
 	int	shift;
 
-	size = stack_size(a);
+	size = stack_size(*a);
 	max_bits = 0;
 	while (((size - 1) >> max_bits) != 0)
 		max_bits++;
@@ -124,7 +124,7 @@ void	radix_base4(t_list **a, t_list **b, t_ops *operation)
 	{
 		partition(a, b, shift, operation);
 		shift += 2;
-		if (is_sorted(*a))
+		if (is_sorted(a))
 			break ;
 	}
 }

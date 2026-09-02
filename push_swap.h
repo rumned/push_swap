@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/02 18:30:54 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 21:40:42 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	index_stack(t_list **stack);
 void	ft_error(char *msg);
 void	ft_check_args(int argc, char **argv);
 void	print_list(t_list *head);
+void	print_ops(t_ops *operation);
+void	init_ops(t_ops *operation);
 void	init_stack(t_list **stack, int ac, char **av);
 
 /* Libft functions*/
@@ -81,9 +83,8 @@ void	ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
 
 /* Algorithm functions */
 void	radix_base4(t_list **a, t_list **b, t_ops *operation);
-void	sort_stack(t_list **stack_a, t_list **stack_b, t_ops *operation);
-void	sort_2(t_list **stack_a, t_ops *operation);
-void	sort_3(t_list **stack_a, t_ops *operation);
+void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *operation);
+void	insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation);
 
 /* Edited libft functions */
 long	ft_atoi(const char *nptr);

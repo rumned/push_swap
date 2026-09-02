@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:16:48 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/02 18:29:11 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 21:38:12 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,22 @@ void	init_bench(t_bench *bench)
 	bench->disorder = 0.0;
 	bench->strategy = NULL;
 	bench->complex_class = NULL;
+}
+
+void	init_ops(t_ops *operation)
+{
+	operation->sa = 0;
+	operation->sb = 0;
+	operation->ss = 0;
+	operation->pa = 0;
+	operation->pb = 0;
+	operation->ra = 0;
+	operation->rb = 0;
+	operation->rr = 0;
+	operation->rra = 0;
+	operation->rrb = 0;
+	operation->rrr = 0;
+	operation->total = 0;
 }
 
 t_bench	calc_disorder(t_list *stack_a)
