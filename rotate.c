@@ -6,12 +6,12 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:41:24 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/02 15:54:14 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/02 17:40:26 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/* after ra, the new head's prev points at the node that just moved to the bottom rather than being NULL*/
+
 void	ra(t_list **stack, t_ops *operation, int print)
 {
 	t_list	*stack_a;
