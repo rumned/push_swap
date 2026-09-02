@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:41:24 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/01 20:18:41 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 15:54:14 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ra(t_list **stack, t_ops *operation, int print)
 		last = last->next;
 	last->next = stack_a;
 	stack_a->prev = last;
+	stack_a->next->prev = NULL;
 	*stack = stack_a->next;
 	stack_a->next = NULL;
 	if (print)
@@ -48,6 +49,7 @@ void	rb(t_list **stack, t_ops *operation, int print)
 		last = last->next;
 	last->next = stack_b;
 	stack_b->prev = last;
+	stack_b->next->prev = NULL;
 	*stack = stack_b->next;
 	stack_b->next = NULL;
 	if (print)
