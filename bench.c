@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:16:48 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/01 19:03:27 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 17:45:04 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,17 @@ t_bench	calc_disorder(t_list *stack_a)
 	init_bench(&bench);
 	bench.disorder = disorder_metric(stack_a);
 	return (bench);
+}
+
+void	adaptive_algo(t_list **a, t_list **b, t_bench *bench, t_ops *operation)
+{
+	float	disorder;
+
+	disorder = bench->disorder;
+	if (disorder < 0.2)
+		simple_sort(a, b, &operation);
+	else if (disorder >= 0.2 && disorder < 0.5)
+		chunk_sort(a, b, &operation);
+	else if (disorder >= 0.5)
+		radix_base4(a, b, &operation);
 }
