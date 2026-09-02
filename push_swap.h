@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/01 19:58:57 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 18:30:54 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	sort_3(t_list **stack_a, t_ops *operation);
 
 /* Edited libft functions */
 long	ft_atoi(const char *nptr);
-int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew_int(int value);
 
 /* Disorder metric */

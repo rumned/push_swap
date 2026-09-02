@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:00:16 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/08/30 19:34:02 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/02 18:26:30 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_check_args(int argc, char **argv)
 	if (argc == 2)
 		ft_free(args);
 }
+
+/*ft_check_flags*/
 
 // if the stack is sorted, returns 1
 int	is_sorted(t_list **stack)

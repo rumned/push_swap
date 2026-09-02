@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   parse_and_index.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:12:04 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/24 21:39:40 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 18:23:45 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static t_list	*get_next_min(t_list **stack)
 {
-	t_list	*head;
+	t_list	*node;
 	t_list	*min;
 
 	min = NULL;
-	head = *stack;
-	if (head)
+	node = *stack;
+	if (node)
 	{
-		while (head)
+		while (node)
 		{
-			if ((head->index == -1) && (!min || head->value < min->value))
-				min = head;
-			head = head->next;
+			if ((node->index == -1) && (!min || node->value < min->value))
+				min = node;
+			node = node->next;
 		}
 	}
 	return (min);
@@ -33,15 +33,15 @@ static t_list	*get_next_min(t_list **stack)
 
 void	index_stack(t_list **stack)
 {
-	t_list	*head;
+	t_list	*node;
 	int		index;
 
 	index = 0;
-	head = get_next_min(stack);
-	while (head)
+	node = get_next_min(stack);
+	while (node)
 	{
-		head->index = index++;
-		head = get_next_min(stack);
+		node->index = index++;
+		node = get_next_min(stack);
 	}
 }
 
@@ -69,3 +69,7 @@ void	init_stack(t_list **stack, int ac, char **av)
 	if (ac == 2)
 		ft_free(args);
 }
+
+/* a function to check flags and return flags
+	might move check args to here
+*/

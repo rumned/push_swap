@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 22:53:27 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/01 20:05:01 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/02 18:29:52 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void sort_3(t_list **stack_a, t_ops *operation)
     int     pos;
     t_list  *hldr;
  
-    last_index = ft_lstsize(*stack_a) - 1;
+    last_index = stack_size(*stack_a) - 1;
     hldr = *stack_a;
     largest_val = (*stack_a)->value;
     pos = 0;
