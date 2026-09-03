@@ -6,38 +6,36 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 20:21:46 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/02 21:15:18 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/03 14:43:27 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	clear_split(t_list **a, t_list **b, int pending[3], t_ops *ops)
+static void	clear_split(t_list **a, t_list **b, int pending[2], t_ops *ops)
 {
 	int	digit;
 
-	digit = pending[2];
-	if (pending[0] && pending[1])
-	{
-		rr(a, b, ops);
-		pending[0] = 0;
-		pending[1] = 0;
-	}
+	digit = pending[1];
 	if (digit == 0 || digit == 1)
 	{
 		if (pending[0])
-			ra(a, ops, 1);
-		if (pending[1])
+		{
 			rb(b, ops, 1);
+			pending[0] = 0;
+		}
 		pb(a, b, ops);
-		pending[0] = 0;
-		pending[1] = (digit == 0);
+		pending[0] = (digit == 0);
 	}
 	else if (digit == 2 || digit == 3)
 	{
 		if (pending[0])
+		{
+			rr(a, b, ops);
+			pending[0] = 0;
+		}
+		else
 			ra(a, ops, 1);
-		pending[0] = 1;
 	}
 }
 
@@ -47,24 +45,21 @@ static void	bitwise_split(t_list **a, t_list **b, int *count, t_ops *operation)
 	int	size;
 	int	shift;
 	int	digit;
-	int	pending[3];
+	int	pending[2];
 
 	i = 0;
 	shift = count[4];
 	size = stack_size(*a);
 	pending[0] = 0;
-	pending[1] = 0;
 	while (i++ < size)
 	{
 		digit = ((*a)->index >> shift) & 3;
-		pending[2] = digit;
+		pending[1] = digit;
 		count[digit]++;
 		clear_split(a, b, pending, operation);
 	}
 	if (pending[0])
-		ra(a, operation, 1);
-	if (pending[1])
-		rb(b, operation, 1);
+		rb(a, operation, 1);
 }
 
 static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)

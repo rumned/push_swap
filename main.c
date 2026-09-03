@@ -18,11 +18,11 @@ static void	print_op(char *name, int count)
 
 	i = 0;
 	while (name[i])
-		ft_putchar_fd(name[i++], 1);
-	ft_putchar_fd(':', 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(count, 1);
-	ft_putchar_fd('\n', 1);
+		ft_putchar_fd(name[i++], 2);
+	ft_putchar_fd(':', 2);
+	ft_putchar_fd(' ', 2);
+	ft_putnbr_fd(count, 2);
+	ft_putchar_fd('\n', 2);
 }
 
 void	print_ops(t_ops *operation)
@@ -82,6 +82,7 @@ int	main(int ac, char **av)
 	// print_list(*stack_a);
 	// print_list(*stack_b);
 	print_ops(&operation);
+	print_op("disorder * 100", (int)(bench.disorder * 100));
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);
