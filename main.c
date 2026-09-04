@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:42:53 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/03 18:31:29 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 15:12:08 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ int	main(int ac, char **av)
 	init_ops(&operation);
 	*stack_a = NULL;
 	*stack_b = NULL;
-	init_stack(stack_a, ac, av);
-	index_stack(stack_a); //indexes stack_a
+	init_stack(stack_a, ac, av); //initiates and indexes stack
 	if (is_sorted(stack_a))
 	{
 		free_stack(stack_a);

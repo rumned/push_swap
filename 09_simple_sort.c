@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 22:53:27 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/02 21:16:05 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 16:08:16 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 //     if(!stack_a || !*stack_a || !(*stack_a)->next)
 //         return ;
 //     if((*stack_a)->value > (*stack_a)->next->value)
-//     {
-//         disorder_metric(*stack_a);
 //         sa(stack_a, operation, 1);
-//     }
 // }
 
 static int	find_max_pos(t_list *stack)
@@ -45,7 +42,7 @@ static int	find_max_pos(t_list *stack)
 	return (best);
 }
  
-/* position that must be on top of b before pushing `value` onto it */
+/* position that must be on top of b before pushing value onto it */
 static int	find_target(t_list *stack_b, int value)
 {
 	int		pos;
@@ -70,30 +67,6 @@ static int	find_target(t_list *stack_b, int value)
 	if (best == -1)
 		return (find_max_pos(stack_b));
 	return (best);
-}
- 
-/* bring position `target` to the top of b, shorter direction first */
-static void	rotate_b_to(t_list **stack_b, t_ops *operation, int target)
-{
-	int	size;
- 
-	size = stack_size(*stack_b);
-	if (target <= size - target)
-	{
-		while (target-- > 0)
-		{
-			disorder_metric(*stack_b);
-			rb(stack_b, operation, 1);
-		}
-	}
-	else
-	{
-		while (target++ < size)
-		{
-			disorder_metric(*stack_b);
-			rrb(stack_b, operation, 1);
-		}
-	}
 }
  
 void	insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation)

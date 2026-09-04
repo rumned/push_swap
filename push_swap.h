@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/02 21:40:42 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 16:24:35 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,53 +47,62 @@ typedef struct s_bench
 	char	*complex_class;
 }	t_bench;
 
-void	ft_free(char **str);
-int		is_sorted(t_list **stack);
-void	free_stack(t_list **stack);
-void	index_stack(t_list **stack);
-void	ft_error(char *msg);
-void	ft_check_args(int argc, char **argv);
-void	print_list(t_list *head);
-void	print_ops(t_ops *operation);
-void	init_ops(t_ops *operation);
-void	init_stack(t_list **stack, int ac, char **av);
+/* General utils*/
+void		ft_free(char **str);
+int			is_sorted(t_list **stack);
+void		free_stack(t_list **stack);
+void		index_stack(t_list **stack);
+void		ft_error(char *msg);
+void		ft_check_args(int argc, char **argv);
+void		print_list(t_list *head);
+void		print_ops(t_ops *operation);
+void		init_ops(t_ops *operation);
+void		init_stack(t_list **stack, int ac, char **av);
 
 /* Libft functions*/
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putendl_fd(char *s, int fd);
-int		ft_isdigit(unsigned char c);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlen(const char *str);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putnbr_fd(int n, int fd);
+void		ft_putendl_fd(char *s, int fd);
+int			ft_isdigit(unsigned char c);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+char		**ft_split(char const *s, char c);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+size_t		ft_strlen(const char *str);
 
 /* Operations */
-void	pa(t_list **stack_a, t_list **stack_b, t_ops *operation);
-void	pb(t_list **stack_a, t_list **stack_b, t_ops *operation);
-void	ra(t_list **stack, t_ops *operation, int print);
-void	rb(t_list **stack, t_ops *operation, int print);
-void	rr(t_list **stack_a, t_list **stack_b, t_ops *operation);
-void	rra(t_list **stack, t_ops *operation, int print);
-void	rrb(t_list **stack, t_ops *operation, int print);
-void	rrr(t_list **stack_a, t_list **stack_b, t_ops *operation);
-void	sa(t_list **stack, t_ops *operation, int print);
-void	sb(t_list **stack, t_ops *operation, int print);
-void	ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		pa(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		pb(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		ra(t_list **stack, t_ops *operation, int print);
+void		rb(t_list **stack, t_ops *operation, int print);
+void		rr(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		rra(t_list **stack, t_ops *operation, int print);
+void		rrb(t_list **stack, t_ops *operation, int print);
+void		rrr(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		sa(t_list **stack, t_ops *operation, int print);
+void		sb(t_list **stack, t_ops *operation, int print);
+void		ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
 
 /* Algorithm functions */
-void	radix_base4(t_list **a, t_list **b, t_ops *operation);
-void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *operation);
-void	insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *operation);
+void		insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		chunk_sort(t_list **a, t_list **b, t_ops *operation);
+void		radix_base4(t_list **a, t_list **b, t_ops *operation);
+
+/* Algorithm utils*/
+int			pos_of_index(t_list *stack, int index);
+int			first_in_chunk(t_list *stack, int hi);
+int			last_in_chunk(t_list *stack, int hi);
+void		rotate_b_to(t_list **b, t_ops *operation, int pos);
+void		step_a(t_list **a, t_ops *operation, int hi);
 
 /* Edited libft functions */
-long	ft_atoi(const char *nptr);
-t_list	*ft_lstnew_int(int value);
+long		ft_atoi(const char *nptr);
+t_list		*ft_lstnew_int(int value);
 
 /* Disorder metric */
-int		stack_size(t_list *stack);
-float	disorder_metric(t_list *stack_a);
-void	init_bench(t_bench *bench);
-t_bench	calc_disorder(t_list *stack_a);
+int			stack_size(t_list *stack);
+float		disorder_metric(t_list *stack_a);
+void		init_bench(t_bench *bench);
+t_bench		calc_disorder(t_list *stack_a);
 
 #endif
