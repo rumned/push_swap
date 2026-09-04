@@ -6,27 +6,11 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 16:07:48 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 20:47:30 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 22:52:35 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* how many nodes sit above the node holding this index */
-int	pos_of_index(t_list *stack, int index)
-{
-	int	pos;
-
-	pos = 0;
-	while (stack)
-	{
-		if (stack->index == index)
-			return (pos);
-		pos++;
-		stack = stack->next;
-	}
-	return (-1);
-}
 
 /* position of the topmost node belonging to the current chunk */
 int	first_in_chunk(t_list *stack, int hi)
@@ -62,6 +46,32 @@ int	last_in_chunk(t_list *stack, int hi)
 	return (best);
 }
 
+/* apply a deferred sink rotation on b */
+void	flush_pending(t_list **b, int *pending, t_ops *operation)
+{
+	if (*pending)
+	{
+		rb(b, operation, 1);
+		*pending = 0;
+	}
+}
+
+/* how many nodes sit above the node holding this index */
+int	pos_of_index(t_list *stack, int index)
+{
+	int	pos;
+
+	pos = 0;
+	while (stack)
+	{
+		if (stack->index == index)
+			return (pos);
+		pos++;
+		stack = stack->next;
+	}
+	return (-1);
+}
+
 /* bring position pos of b to the top, shorter direction first */
 void	rotate_b_to(t_list **b, t_ops *operation, int pos)
 {
@@ -84,18 +94,4 @@ void	rotate_b_to(t_list **b, t_ops *operation, int pos)
 			pos++;
 		}
 	}
-}
-
-/* one rotation of a, towards whichever end of the chunk is nearer */
-void	step_a(t_list **a, t_ops *operation, int hi)
-{
-	int	up;
-	int	down;
-
-	up = first_in_chunk(*a, hi);
-	down = stack_size(*a) - last_in_chunk(*a, hi);
-	if (up <= down)
-		ra(a, operation, 1);
-	else
-		rra(a, operation, 1);
 }

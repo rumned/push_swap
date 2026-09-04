@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 16:08:50 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 20:47:24 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 22:51:37 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	chunk_width(int size)
 {
 	int	width;
-
+ 
 	if (size <= 5)
 		return (size);
 	width = 1;
@@ -24,58 +24,71 @@ static int	chunk_width(int size)
 		width++;
 	return (width * 2);
 }
-
-/* push the top of a into b, then sink it if it is a low half index */
-static void	push_one(t_list **a, t_list **b, t_ops *operation, int mid)
+ 
+/* st[0] = hi, st[1] = width, st[2] = pending sink on b */
+static void	push_one(t_list **a, t_list **b, int st[3], t_ops *operation)
 {
 	int	index;
-
+ 
+	flush_pending(b, &st[2], operation);
 	index = (*a)->index;
 	pb(a, b, operation);
-	if (index < mid)
-		rb(b, operation, 1);
+	if (index < st[0] - (st[1] / 2))
+		st[2] = 1;
 }
-
+ 
+/* one rotation of a, folding a pending rb into rr when directions agree */
+static void	push_step(t_list **a, t_list **b, int st[3], t_ops *operation)
+{
+	int	up;
+	int	down;
+ 
+	up = first_in_chunk(*a, st[0]);
+	down = stack_size(*a) - last_in_chunk(*a, st[0]);
+	if (up <= down)
+	{
+		if (st[2])
+		{
+			rr(a, b, operation);
+			st[2] = 0;
+		}
+		else
+			ra(a, operation, 1);
+	}
+	else
+	{
+		flush_pending(b, &st[2], operation);
+		rra(a, operation, 1);
+	}
+}
+ 
 /* move every node of a into b, one chunk at a time */
 static void	push_phase(t_list **a, t_list **b, t_ops *operation)
 {
-	int	width;
-	int	hi;
+	int	st[3];
 	int	pushed;
 	int	total;
-
+ 
 	total = stack_size(*a);
-	width = chunk_width(total);
-	hi = width - 1;
+	st[1] = chunk_width(total);
+	st[0] = st[1] - 1;
+	st[2] = 0;
 	pushed = 0;
 	while (pushed < total)
 	{
-		if ((*a)->index <= hi)
+		if ((*a)->index <= st[0])
 		{
-			push_one(a, b, operation, hi - (width / 2));
+			push_one(a, b, st, operation);
 			pushed++;
 		}
 		else
-			step_a(a, operation, hi);
-		if (pushed > hi)
-			hi = hi + width;
+			push_step(a, b, st, operation);
+		if (pushed > st[0])
+			st[0] = st[0] + st[1];
 	}
+	flush_pending(b, &st[2], operation);
 }
-
-/* pull nodes back into a, biggest index first */
-static void	pop_phase(t_list **a, t_list **b, t_ops *operation)
-{
-	int	size;
-
-	size = stack_size(*b);
-	while (size > 0)
-	{
-		rotate_b_to(b, operation, pos_of_index(*b, size - 1));
-		pa(a, b, operation);
-		size--;
-	}
-}
-
+ 
 void	chunk_sort(t_list **a, t_list **b, t_ops *operation)
 {
 	if (!a || !*a || !(*a)->next)
@@ -83,3 +96,4 @@ void	chunk_sort(t_list **a, t_list **b, t_ops *operation)
 	push_phase(a, b, operation);
 	pop_phase(a, b, operation);
 }
+
