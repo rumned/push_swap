@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
 /* count[4] holds the current shift; count[0..3] the digit tallies */
 static void	split_low(t_list **a, t_list **b, int *count, t_ops *operation)
 {
