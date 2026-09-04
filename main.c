@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:42:53 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 15:12:08 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 20:30:35 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	print_op(char *name, int count)
 	ft_putchar_fd('\n', 2);
 }
 
-void	print_ops(t_ops *operation)
+static void	print_ops(t_ops *operation)
 {
 	print_op("sa", operation->sa);
 	print_op("sb", operation->sb);
@@ -41,7 +41,7 @@ void	print_ops(t_ops *operation)
 	print_op("total", operation->total);
 }
 
-void	print_list(t_list *head)
+static void	print_list(t_list *head)
 {
 	t_list	*tmp;
 
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	init_ops(&operation);
 	*stack_a = NULL;
 	*stack_b = NULL;
-	init_stack(stack_a, ac, av); //initiates and indexes stack
+	init_stack(stack_a, ac, av);
 	if (is_sorted(stack_a))
 	{
 		free_stack(stack_a);
@@ -79,7 +79,7 @@ int	main(int ac, char **av)
 	bench = calc_disorder(*stack_a);
 	sort_stack(stack_a, stack_b, &bench, &operation);
 	print_list(*stack_a);
-	print_list(*stack_b);
+	// print_list(*stack_b);
 	print_ops(&operation);
 	// print_op("disorder * 100", (int)(bench.disorder * 100));
 	free_stack(stack_a);

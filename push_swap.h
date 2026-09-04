@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 16:24:35 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 20:30:47 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void		free_stack(t_list **stack);
 void		index_stack(t_list **stack);
 void		ft_error(char *msg);
 void		ft_check_args(int argc, char **argv);
-void		print_list(t_list *head);
-void		print_ops(t_ops *operation);
 void		init_ops(t_ops *operation);
 void		init_stack(t_list **stack, int ac, char **av);
 
