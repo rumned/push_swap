@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:22:17 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/05 00:03:19 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 00:50:25 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
 		radix_mix(a, b, ops);
 }
 
-// void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
-// {
-// 	float	disorder;
+/*void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
+{
+	float	disorder;
 
-// 	disorder = bench->disorder;
-// 	if (disorder)
-// 		insertion_sort(a, b, ops);
-// }
+	disorder = bench->disorder;
+	if (disorder)
+		radix_mix(a, b, ops);
+}*/
