@@ -6,26 +6,18 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 22:53:27 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 19:09:43 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 20:54:42 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void sort_2(t_list **stack_a, t_ops *operation)
-// {
-//     if(!stack_a || !*stack_a || !(*stack_a)->next)
-//         return ;
-//     if((*stack_a)->value > (*stack_a)->next->value)
-//         sa(stack_a, operation, 1);
-// }
 
 static int	find_max_pos(t_list *stack)
 {
 	int	pos;
 	int	best;
 	int	best_val;
- 
+
 	pos = 0;
 	best = 0;
 	best_val = stack->value;
@@ -41,7 +33,7 @@ static int	find_max_pos(t_list *stack)
 	}
 	return (best);
 }
- 
+
 /* position that must be on top of b before pushing value onto it */
 static int	find_target(t_list *stack_b, int value)
 {
@@ -49,7 +41,7 @@ static int	find_target(t_list *stack_b, int value)
 	int		best;
 	int		best_val;
 	t_list	*hldr;
- 
+
 	hldr = stack_b;
 	pos = 0;
 	best = -1;
@@ -68,23 +60,23 @@ static int	find_target(t_list *stack_b, int value)
 		return (find_max_pos(stack_b));
 	return (best);
 }
- 
-void	insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation)
+
+void	insertion_sort(t_list **a, t_list **b, t_ops *ops)
 {
 	int	target;
- 
-	if (!stack_a || !*stack_a || !(*stack_a)->next)
+
+	if (!a || !*a || !(*a)->next)
 		return ;
-	while (*stack_a)
+	while (*a)
 	{
-		if (*stack_b)
+		if (*b)
 		{
-			target = find_target(*stack_b, (*stack_a)->value);
-			rotate_b_to(stack_b, operation, target);
+			target = find_target(*b, (*a)->value);
+			rotate_b_to(b, ops, target);
 		}
-		pb(stack_a, stack_b, operation);
+		pb(a, b, ops);
 	}
-	rotate_b_to(stack_b, operation, find_max_pos(*stack_b));
-	while (*stack_b)
-		pa(stack_a, stack_b, operation);
+	rotate_b_to(b, ops, find_max_pos(*b));
+	while (*b)
+		pa(a, b, ops);
 }

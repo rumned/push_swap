@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:16:48 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/04 20:39:02 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 20:46:18 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,3 @@ t_bench	calc_disorder(t_list *stack_a)
 	bench.disorder = disorder_metric(stack_a);
 	return (bench);
 }
-

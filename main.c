@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:42:53 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 20:35:11 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 20:48:10 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	print_list(t_list *head)
 	}
 }
 
-static	void free_stacks(t_list **stack_a, t_list **stack_b)
+static	void	free_stacks(t_list **stack_a, t_list **stack_b)
 {
 	free_stack(stack_a);
 	free_stack(stack_b);
@@ -65,7 +65,7 @@ int	main(int ac, char **av)
 	t_list	**stack_a;
 	t_list	**stack_b;
 	t_ops	operation;
-	t_bench bench;
+	t_bench	bench;
 
 	if (ac < 2)
 		return (-1);

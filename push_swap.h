@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 20:30:47 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 20:50:29 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_operation
 	int	rra;
 	int	rrb;
 	int	rrr;
-	int total;
+	int	total;
 }		t_ops;
 
 typedef struct s_bench
@@ -81,8 +81,8 @@ void		sb(t_list **stack, t_ops *operation, int print);
 void		ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
 
 /* Algorithm functions */
-void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *operation);
-void		insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops);
+void		insertion_sort(t_list **a, t_list **b, t_ops *ops);
 void		chunk_sort(t_list **a, t_list **b, t_ops *operation);
 void		radix_mix(t_list **a, t_list **b, t_ops *operation);
 
