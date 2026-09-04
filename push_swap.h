@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 20:50:29 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 23:53:01 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ typedef struct s_bench
 	char	*strategy;
 	char	*complex_class;
 }	t_bench;
+
+typedef enum e_mode
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE
+}	t_mode;
 
 /* General utils*/
 void		ft_free(char **str);
@@ -90,8 +98,15 @@ void		radix_mix(t_list **a, t_list **b, t_ops *operation);
 int			pos_of_index(t_list *stack, int index);
 int			first_in_chunk(t_list *stack, int hi);
 int			last_in_chunk(t_list *stack, int hi);
+void		flush_pending(t_list **b, int *pending, t_ops *operation);
 void		rotate_b_to(t_list **b, t_ops *operation, int pos);
-void		step_a(t_list **a, t_ops *operation, int hi);
+void		greedy_pop(t_list **a, t_list **b, t_ops *operation);
+int			rot_cost(int pos, int size);
+int			abs_i(int n);
+int			combined(int ca, int cb);
+int			pos_of_min(t_list *stack);
+int			insert_pos(t_list *a, int value);
+void		pop_phase(t_list **a, t_list **b, t_ops *operation);
 
 /* Edited libft functions */
 long		ft_atoi(const char *nptr);

@@ -6,136 +6,127 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 20:21:46 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/04 19:10:36 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 22:57:59 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	clear_split(t_list **a, t_list **b, int pending[2], t_ops *ops)
-{
-	int	digit;
+#include "push_swap.h"
 
-	digit = pending[1];
-	if (digit == 0 || digit == 1)
-	{
-		if (pending[0])
-		{
-			rb(b, ops, 1);
-			pending[0] = 0;
-		}
-		pb(a, b, ops);
-		pending[0] = (digit == 0);
-	}
-	else if (digit == 2 || digit == 3)
-	{
-		if (pending[0])
-		{
-			rr(a, b, ops);
-			pending[0] = 0;
-		}
-		else
-			ra(a, ops, 1);
-	}
-}
-
-static void	bitwise_split(t_list **a, t_list **b, int *count, t_ops *operation)
+/* count[4] holds the current shift; count[0..3] the digit tallies */
+static void	split_low(t_list **a, t_list **b, int *count, t_ops *operation)
 {
 	int	i;
 	int	size;
-	int	shift;
 	int	digit;
-	int	pending[2];
 
 	i = 0;
-	shift = count[4];
 	size = stack_size(*a);
-	pending[0] = 0;
 	while (i++ < size)
 	{
-		digit = ((*a)->index >> shift) & 3;
-		pending[1] = digit;
+		digit = ((*a)->index >> count[4]) & 3;
 		count[digit]++;
-		clear_split(a, b, pending, operation);
+		if (digit < 2)
+			pb(a, b, operation);
+		else
+			ra(a, operation, 1);
 	}
-	if (pending[0])
-		rb(b, operation, 1);
 }
 
+/* separate digit 2 from digit 3, leaving a as [2s, 3s] */
 static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)
 {
 	int	digit;
-	int	shift;
 	int	size;
 	int	i;
 
 	if (!*a)
 		return ;
 	i = 0;
-	shift = count[4];
 	size = count[2] + count[3];
 	while (i++ < size)
 	{
-		digit = ((*a)->index >> shift) & 3;
+		digit = ((*a)->index >> count[4]) & 3;
 		if (digit == 2)
 			pb(a, b, operation);
 		else if (digit == 3)
 			ra(a, operation, 1);
 	}
-	while (count[2]--)
+	i = count[2];
+	while (i--)
 		pa(a, b, operation);
 }
 
-static void	partition(t_list **a, t_list **b, int *ssm, t_ops *operation)
+/* pull digit 1 out of b first, then digit 0, keeping both groups in order */
+static void	extract_ones(t_list **a, t_list **b, int *count, t_ops *operation)
 {
-	int	count[2];
-	int	digit;
+	int	i;
+	int	size;
 
-	while (ssm[0] < ssm[2])
+	i = 0;
+	size = count[0] + count[1];
+	while (i++ < size)
 	{
-		count[0] = 0;
-		count[1] = 0;
-		ssm[1] = stack_size(*a);
-		while (ssm[1]--)
-		{
-			digit = ((*a)->index >> ssm[0]) & 1;
-			count[digit]++;
-			if (digit == 0)
-				pb(a, b, operation);
-			else if (digit == 1)
-				ra(a, operation, 1);
-		}
-		while (count[0]--)
+		if ((((*b)->index >> count[4]) & 3) == 1)
 			pa(a, b, operation);
-		ssm[0]++;
-		if (is_sorted(a))
-			break ;
+		else
+			rb(b, operation, 1);
 	}
+	i = count[0];
+	while (i--)
+		pa(a, b, operation);
+}
+
+/* one stable binary pass, used when a single bit is left over */
+static void	partition_bit(t_list **a, t_list **b, int *count, t_ops *operation)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	count[0] = 0;
+	size = stack_size(*a);
+	while (i++ < size)
+	{
+		if ((((*a)->index >> count[4]) & 1) == 0)
+		{
+			count[0]++;
+			pb(a, b, operation);
+		}
+		else
+			ra(a, operation, 1);
+	}
+	i = count[0];
+	while (i--)
+		pa(a, b, operation);
 }
 
 void	radix_mix(t_list **a, t_list **b, t_ops *operation)
 {
-	int	size;
 	int	max_bits;
-	int	i;
 	int	count[5];
-	int	shift_size_max[3];
+	int	i;
 
-	size = stack_size(*a);
 	max_bits = 0;
-	while (((size - 1) >> max_bits) != 0)
+	while (((stack_size(*a) - 1) >> max_bits) != 0)
 		max_bits++;
-	i = 5;
-	while (i--)
-		count[i] = 0;
-	bitwise_split(a, b, count, operation);
-	refine_stack(a, b, count, operation);
-	while (count[1]--)
-		pa(a, b, operation);
-	while (count[0]--)
-		pa(a, b, operation);
-	shift_size_max[0] = 2;
-	shift_size_max[1] = size;
-	shift_size_max[2] = max_bits;
-	partition(a, b, shift_size_max, operation);
+	count[4] = 0;
+	while (count[4] < max_bits)
+	{
+		i = 4;
+		while (i--)
+			count[i] = 0;
+		if (count[4] + 1 == max_bits)
+			partition_bit(a, b, count, operation);
+		else
+		{
+			split_low(a, b, count, operation);
+			refine_stack(a, b, count, operation);
+			extract_ones(a, b, count, operation);
+		}
+		count[4] += 2;
+		if (is_sorted(a))
+			break ;
+	}
 }
