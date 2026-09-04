@@ -47,6 +47,14 @@ typedef struct s_bench
 	char	*complex_class;
 }	t_bench;
 
+typedef enum e_mode
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE
+}	t_mode;
+
 /* General utils*/
 void		ft_free(char **str);
 int			is_sorted(t_list **stack);
