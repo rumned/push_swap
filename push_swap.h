@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 23:53:01 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/04 23:55:59 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 size_t		ft_strlen(const char *str);
+int			ft_strcmp(const char *s1, const char *s2);
 
 /* Operations */
 void		pa(t_list **stack_a, t_list **stack_b, t_ops *operation);
