@@ -101,7 +101,11 @@ static void	partition(t_list **a, t_list **b, int shift, t_ops *operation)
 	while (count[1]--)
 		pa(a, b, operation);
 	while (count[0]--)
+	{
+		if (shift > 0)
+			rrb(b, operation, 1);
 		pa(a, b, operation);
+	}
 }
 
 void	radix_base4(t_list **a, t_list **b, t_ops *operation)
