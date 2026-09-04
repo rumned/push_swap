@@ -59,7 +59,7 @@ static void	bitwise_split(t_list **a, t_list **b, int *count, t_ops *operation)
 		clear_split(a, b, pending, operation);
 	}
 	if (pending[0])
-		rb(a, operation, 1);
+		rb(b, operation, 1);
 }
 
 static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)
@@ -86,44 +86,56 @@ static void	refine_stack(t_list **a, t_list **b, int *count, t_ops *operation)
 		pa(a, b, operation);
 }
 
-static void	partition(t_list **a, t_list **b, int shift, t_ops *operation)
+static void	partition(t_list **a, t_list **b, int *ssm, t_ops *operation)
 {
-	int	count[5];
-	// int	digit;
-	int	i;
+	int	count[2];
+	int	digit;
 
-	i = 0;
-	while (i++ < 4)
-		count[i] = 0;
-	count[4] = shift;
-	bitwise_split(a, b, count, operation);
-	refine_stack(a, b, count, operation);
-	while (count[1]--)
-		pa(a, b, operation);
-	while (count[0]--)
+	while (ssm[0] < ssm[2])
 	{
-		if (shift > 0)
-			rrb(b, operation, 1);
-		pa(a, b, operation);
+		count[0] = 0;
+		count[1] = 0;
+		ssm[1] = stack_size(*a);
+		while (ssm[1]--)
+		{
+			digit = ((*a)->index >> ssm[0]) & 1;
+			count[digit]++;
+			if (digit == 0)
+				pb(a, b, operation);
+			else if (digit == 1)
+				ra(a, operation, 1);
+		}
+		while (count[0]--)
+			pa(a, b, operation);
+		ssm[0]++;
+		if (is_sorted(a))
+			break ;
 	}
 }
 
-void	radix_base4(t_list **a, t_list **b, t_ops *operation)
+void	radix_mix(t_list **a, t_list **b, t_ops *operation)
 {
 	int	size;
 	int	max_bits;
-	int	shift;
+	int	i;
+	int	count[5];
+	int	shift_size_max[3];
 
 	size = stack_size(*a);
 	max_bits = 0;
 	while (((size - 1) >> max_bits) != 0)
 		max_bits++;
-	shift = 0;
-	while (shift < max_bits)
-	{
-		partition(a, b, shift, operation);
-		shift += 2;
-		if (is_sorted(a))
-			break ;
-	}
+	i = 5;
+	while (i--)
+		count[i] = 0;
+	bitwise_split(a, b, count, operation);
+	refine_stack(a, b, count, operation);
+	while (count[1]--)
+		pa(a, b, operation);
+	while (count[0]--)
+		pa(a, b, operation);
+	shift_size_max[0] = 2;
+	shift_size_max[1] = size;
+	shift_size_max[2] = max_bits;
+	partition(a, b, shift_size_max, operation);
 }

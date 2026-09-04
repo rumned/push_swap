@@ -23,5 +23,5 @@ void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *operation)
 	else
 		chunk_sort(a, b, operation);
 	// else if (disorder >= 0.5)
-	// 	radix_base4(a, b, operation);
+	// 	radix_mix(a, b, operation);
 }

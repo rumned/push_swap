@@ -86,7 +86,7 @@ void		ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
 void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *operation);
 void		insertion_sort(t_list **stack_a, t_list **stack_b, t_ops *operation);
 void		chunk_sort(t_list **a, t_list **b, t_ops *operation);
-void		radix_base4(t_list **a, t_list **b, t_ops *operation);
+void		radix_mix(t_list **a, t_list **b, t_ops *operation);
 
 /* Algorithm utils*/
 int			pos_of_index(t_list *stack, int index);
