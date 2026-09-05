@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:42:53 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/05 19:01:38 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 19:07:47 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ static void	print_ops(t_ops *operation)
 	print_op("total", operation->total);
 }
 
-static void	print_list(t_list *head)
-{
-	t_list	*tmp;
+// static void	print_list(t_list *head)
+// {
+// 	t_list	*tmp;
 
-	tmp = head;
-	while (tmp != NULL)
-	{
-		ft_putnbr_fd(tmp->value, 1);
-		ft_putendl_fd("", 1);
-		tmp = tmp->next;
-	}
-}
+// 	tmp = head;
+// 	while (tmp != NULL)
+// 	{
+// 		ft_putnbr_fd(tmp->value, 1);
+// 		ft_putendl_fd("", 1);
+// 		tmp = tmp->next;
+// 	}
+// }
 
 static	void	free_stacks(t_list **stack_a, t_list **stack_b)
 {

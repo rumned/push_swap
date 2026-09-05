@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/05 18:36:42 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/05 19:15:24 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,13 @@ int			is_sorted(t_list **stack);
 void		free_stack(t_list **stack);
 void		index_stack(t_list **stack);
 void		ft_error(char *msg);
-void		ft_check_args(int argc, char **argv);
+void		ft_check_args(int ac, char **av, t_mode *mode);
 void		init_ops(t_ops *operation);
-void		init_stack(t_list **stack, int ac, char **av);
+void		init_stack(t_list **stack, int ac, char **av, t_mode mode);
+t_mode		is_flag(char *str);
+int			get_end_index(int ac, char **args);
+void		extract_flags(char **args, int *start, int *end, 
+			t_mode *mode);
 
 /* Libft functions*/
 void		ft_putchar_fd(char c, int fd);

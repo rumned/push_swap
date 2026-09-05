@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   20_parse_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 14:31:45 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/05 18:50:25 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/05 19:18:53 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_flag(char *str)
+t_mode	is_flag(char *str)
 {
 	if (ft_strcmp(str, "--simple") == 0)
 		return(SIMPLE);
