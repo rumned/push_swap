@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:00:16 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 20:39:04 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 18:49:05 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,36 +40,34 @@ static int	ft_contains(long num, char **argv, int i)
 	return (0);
 }
 
-void	ft_check_args(int argc, char **argv)
+void	ft_check_args(int ac, char **av, t_mode *mode)
 {
-	int		i;
+	char	**args;
+	int		start;
+	int		end;
 	long	tmp;
-	char	**args;	
 
-	i = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
-	else
+	args = av;
+	start = 1;
+	if (ac == 2)
 	{
-		i = 1;
-		args = argv;
+		args = ft_split(av[1], ' '); // Fixed to av[1]
+		start = 0;
 	}
-	while (args[i])
+	end = get_end_index(ac, args);
+	extract_flags(args, &start, &end, mode);
+	while (start <= end)
 	{
-		tmp = ft_atoi(args[i]);
-		if (!ft_isnum(args[i]))
-			ft_error("Error");
-		if (ft_contains(tmp, args, i))
+		tmp = ft_atoi(args[start]);
+		if (!ft_isnum(args[start]) || ft_contains(tmp, args, start))
 			ft_error("Error");
 		if (tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
-		i++;
+		start++;
 	}
-	if (argc == 2)
+	if (ac == 2)
 		ft_free(args);
 }
-
-/*ft_check_flags*/
 
 // if the stack is sorted, returns 1
 int	is_sorted(t_list **stack)
