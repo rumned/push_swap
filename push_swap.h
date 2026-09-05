@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 23:55:59 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 18:36:42 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ typedef struct s_bench
 
 typedef enum e_mode
 {
+	DEFAULT = 0,
 	SIMPLE,
 	MEDIUM,
 	COMPLEX,
-	ADAPTIVE
+	ADAPTIVE,
+	BENCH
 }	t_mode;
 
 /* General utils*/

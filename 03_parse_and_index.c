@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:12:04 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/04 20:39:01 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 18:51:25 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,32 @@ void	index_stack(t_list **stack)
 	}
 }
 
-void	init_stack(t_list **stack, int ac, char **av)
+void	init_stack(t_list **stack, int ac, char **av, t_mode mode)
 {
 	t_list	*new;
 	char	**args;
-	int		i;
+	int		start;
+	int		end;
 
-	i = 0;
+	args = av;
+	start = 1;
 	if (ac == 2)
-		args = ft_split(av[1], ' ');
-	else
 	{
-		i = 1;
-		args = av;
+		args = ft_split(av[1], ' '); // Fixed to av[1]
+		start = 0;
 	}
-	while (args[i])
+	end = get_end_index(ac, args);
+	if (is_flag(args[start]) == mode && mode != DEFAULT)
+		start++;
+	if (is_flag(args[end]) == mode && mode != DEFAULT)
+		end--;
+	while (start <= end)
 	{
-		new = ft_lstnew_int(ft_atoi(args[i]));
+		new = ft_lstnew_int(ft_atoi(args[start]));
 		ft_lstadd_back(stack, new);
-		i++;
+		start++;
 	}
 	index_stack(stack);
 	if (ac == 2)
 		ft_free(args);
 }
-
-/* a function to check flags and return flags
-	might move check args to here
-*/
