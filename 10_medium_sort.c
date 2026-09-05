@@ -6,13 +6,13 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 16:08:50 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 23:05:00 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 18:50:15 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* how wide one chunk is, roughly twice the square root of the size */
+/* how wide one chunk is, 3.6 times the square root of the size */
 static int	chunk_width(int size)
 {
 	int	width;
@@ -22,7 +22,7 @@ static int	chunk_width(int size)
 	width = 1;
 	while (width * width < size)
 		width++;
-	return (width * 2);
+	return ((width * 36) / 10);
 }
 
 /* st[0] = hi, st[1] = width, st[2] = pending sink on b */
@@ -45,7 +45,7 @@ static void	push_step(t_list **a, t_list **b, int st[3], t_ops *operation)
 
 	up = first_in_chunk(*a, st[0]);
 	down = stack_size(*a) - last_in_chunk(*a, st[0]);
-	if (up <= down)
+	if (up <= down + (st[2] != 0))
 	{
 		if (st[2])
 		{
@@ -84,7 +84,10 @@ static void	push_phase(t_list **a, t_list **b, t_ops *operation)
 		else
 			push_step(a, b, st, operation);
 		if (pushed > st[0])
+		{
+			st[1] = chunk_width(total - pushed);
 			st[0] = st[0] + st[1];
+		}
 	}
 	flush_pending(b, &st[2], operation);
 }
