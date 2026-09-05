@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   12_complex_sort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
+/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/30 20:21:46 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/04 22:57:59 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/05 13:55:40 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ static void	partition_bit(t_list **a, t_list **b, int *count, t_ops *operation)
 		}
 		else
 			ra(a, operation, 1);
+		if (is_sorted(a))
+			break ;
 	}
 	i = count[0];
 	while (i--)
