@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:12:04 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/06 18:49:41 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/06 19:04:23 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ void	index_stack(t_list **stack)
 	}
 }
 
+/* skip a leading or trailing flag argument when one is present */
+static void	trim_flags(char **args, int *start, int *end, t_mode mode)
+{
+	if (mode == DEFAULT)
+		return ;
+	if (is_flag(args[*start]) == mode)
+		(*start)++;
+	if (is_flag(args[*end]) == mode)
+		(*end)--;
+}
+
 void	init_stack(t_list **stack, int ac, char **av, t_mode mode)
 {
 	t_list	*new;
@@ -60,10 +71,7 @@ void	init_stack(t_list **stack, int ac, char **av, t_mode mode)
 		start = 0;
 	}
 	end = get_end_index(ac, args);
-	if (is_flag(args[start]) == mode && mode != DEFAULT)
-		start++;
-	if (is_flag(args[end]) == mode && mode != DEFAULT)
-		end--;
+	trim_flags(args, &start, &end, mode);
 	while (start <= end)
 	{
 		new = ft_lstnew_int(ft_atoi(args[start]));

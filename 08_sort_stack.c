@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:22:17 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/05 19:22:33 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/06 19:06:26 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
 
 // 	disorder = bench->disorder;
 // 	if (disorder)
-// 		insertion_sort(a, b, ops);
+// 		chunk_sort(a, b, ops);
 // }
