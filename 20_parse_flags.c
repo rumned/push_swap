@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 14:31:45 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/05 19:18:53 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/06 18:50:49 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_mode	is_flag(char *str)
 {
 	if (ft_strcmp(str, "--simple") == 0)
-		return(SIMPLE);
+		return (SIMPLE);
 	if (ft_strcmp(str, "--medium") == 0)
 		return (MEDIUM);
 	if (ft_strcmp(str, "--complex") == 0)
@@ -40,7 +40,6 @@ int	get_end_index(int ac, char **args)
 	}
 	return (ac - 1);
 }
-
 
 void	extract_flags(char **args, int *start, int *end, t_mode *mode)
 {

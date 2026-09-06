@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/05 19:15:24 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/06 18:51:31 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void		init_ops(t_ops *operation);
 void		init_stack(t_list **stack, int ac, char **av, t_mode mode);
 t_mode		is_flag(char *str);
 int			get_end_index(int ac, char **args);
-void		extract_flags(char **args, int *start, int *end, 
-			t_mode *mode);
+void		extract_flags(char **args, int *start, int *end,
+				t_mode *mode);
 
 /* Libft functions*/
 void		ft_putchar_fd(char c, int fd);

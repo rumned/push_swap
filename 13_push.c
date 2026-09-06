@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:09:36 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/04 19:09:13 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/06 18:47:26 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pa(t_list **stack_a, t_list **stack_b, t_ops *operation)
 	t_list	*a;
 	t_list	*b;
 
-	if (!stack_a || !*stack_b || !stack_b)
+	if (!stack_a || !stack_b || !*stack_b)
 		return ;
 	a = *stack_a;
 	b = *stack_b;

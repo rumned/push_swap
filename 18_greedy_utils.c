@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 23:01:54 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/04 23:03:24 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/06 18:53:05 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	pos_of_min(t_list *stack)
 	int	best;
 	int	best_val;
 
+	if (!stack)
+		return (-1);
 	pos = 0;
 	best = 0;
 	best_val = stack->value;

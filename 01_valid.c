@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:00:16 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/05 18:49:05 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/06 18:51:50 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_check_args(int ac, char **av, t_mode *mode)
 	start = 1;
 	if (ac == 2)
 	{
-		args = ft_split(av[1], ' '); // Fixed to av[1]
+		args = ft_split(av[1], ' ');
 		start = 0;
 	}
 	end = get_end_index(ac, args);

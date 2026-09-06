@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:12:04 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/05 18:51:25 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/06 18:49:41 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_stack(t_list **stack, int ac, char **av, t_mode mode)
 	start = 1;
 	if (ac == 2)
 	{
-		args = ft_split(av[1], ' '); // Fixed to av[1]
+		args = ft_split(av[1], ' ');
 		start = 0;
 	}
 	end = get_end_index(ac, args);
