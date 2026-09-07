@@ -22,7 +22,7 @@ void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
 	else if (disorder >= 0.2 && disorder < 0.5)
 		chunk_sort(a, b, ops);
 	else if (disorder >= 0.5)
-		radix_mix(a, b, ops);
+		radix_msd(a, b, ops);
 }
 
 // void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)

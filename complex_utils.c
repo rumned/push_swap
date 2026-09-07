@@ -50,23 +50,28 @@ void	small_sort_a(t_list **a, t_list **b, int size, t_ops *operation)
 	int	item_pb;
 	int	item_ra;
 
+	if (size <= 1)
+		return ;
 	item_pb = 0;
-	while (size > 2)
+	while (size > 2 && *a)
 	{
 		min = get_next_min(*a, size);
 		item_ra = 0;
-		while ((*a)->index != min)
+		while (*a && (*a)->index != min)
 		{
 			ra(a, operation, 1);
 			item_ra++;
 		}
-		pb(a, b, operation);
-		item_pb++;
-		size--;
+		if (*a)
+		{
+			pb(a, b, operation);
+			item_pb++;
+			size--;
+		}
 		while (item_ra--)
 			rra(a, operation, 1);
 	}
-	if ((*a)->index > (*a)->next->index)
+	if (size == 2 && ((*a)->index > (*a)->next->index))
 		sa(a, operation, 1);
 	while (item_pb--)
 		pa(a, b, operation);
@@ -77,17 +82,22 @@ void	small_sort_b(t_list **a, t_list **b, int size, t_ops *operation)
 	int	max;
 	int	item_rb;
 
-	while (size > 2)
+	if (size <= 0)
+		return ;
+	while (size > 2 && *b)
 	{
 		max = get_next_max(*b, size);
 		item_rb = 0;
-		while ((*b)->index != max)
+		while (*b && (*b)->index != max)
 		{
 			rb(b, operation, 1);
 			item_rb++;
 		}
-		pa(a, b, operation);
-		size--;
+		if (*b)
+		{
+			pa(a, b, operation);
+			size--;
+		}
 		while (item_rb--)
 			rrb(b, operation, 1);
 	}

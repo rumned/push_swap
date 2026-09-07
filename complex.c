@@ -64,16 +64,14 @@ static void	refine_a(t_list **a, t_list **b, int *count, t_ops *operation)
 static void	recurse_msd_a(t_list **a, t_list **b, int *count, t_ops *ops)
 {
 	int	next_count[2];
-	int	bucket_2;
 
 	next_count[1] = count[1] - 2;
 	next_count[0] = count[3];
 	msd_a(a, b, next_count, ops);
-	bucket_2 = count[2];
-	while (bucket_2--)
-		pa(a, b, ops);
 	next_count[0] = count[2];
-	msd_a(a, b, next_count, ops);
+	msd_b(a, b, next_count, ops);
+	while (count[2]--)
+		pa(a, b, ops);
 	next_count[0] = count[4];
 	msd_b(a, b, next_count, ops);
 	while (count[4]--)
@@ -86,7 +84,7 @@ void	msd_a(t_list **a, t_list **b, int *s_mb, t_ops *operation)
 	int	count[5];
 
 	size = s_mb[0];
-	if (size <= 8)
+	if (size <= 16)
 		return (small_sort_a(a, b, size, operation));
 	count[0] = 0;
 	count[1] = s_mb[1];
@@ -128,6 +126,9 @@ void	radix_msd(t_list **a, t_list **b, t_ops *operation)
 			pa(a, b, operation);
 	}
 	else
+	{
+		size_maxbits[1] -= 1;
 		msd_a(a, b, size_maxbits, operation);
+	}
 	write(2, "this is radix\n", 14);
 }

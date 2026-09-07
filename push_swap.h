@@ -115,6 +115,13 @@ int			pos_of_min(t_list *stack);
 int			insert_pos(t_list *a, int value);
 void		pop_phase(t_list **a, t_list **b, t_ops *operation);
 
+/* Radix testing*/
+void	radix_msd(t_list **a, t_list **b, t_ops *operation);
+void	msd_a(t_list **a, t_list **b, int *s_mb, t_ops *operation);
+void	msd_b(t_list **a, t_list **b, int *s_mb, t_ops *operation);
+void	small_sort_a(t_list **a, t_list **b, int size, t_ops *operation);
+void	small_sort_b(t_list **a, t_list **b, int size, t_ops *operation);
+
 /* Edited libft functions */
 long		ft_atoi(const char *nptr);
 t_list		*ft_lstnew_int(int value);

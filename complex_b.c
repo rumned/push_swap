@@ -43,16 +43,18 @@ static void	refine_b(t_list **a, t_list **b, int *count, t_ops *operation)
 static void	recurse_msd_b(t_list **a, t_list **b, int *count, t_ops *ops)
 {
 	int	next_count[2];
-	int	bucket_1;
+	int	bucket_0;
 
 	next_count[1] = count[1] - 2;
 	next_count[0] = count[3];
 	msd_a(a, b, next_count, ops);
-	next_count[0] = count[2];
-	msd_b(a, b, next_count, ops);
-	bucket_1 = count[2];
-	while (bucket_1--)
+	bucket_0 = count[2];
+	while (bucket_0--)
 		pa(a, b, ops);
+	next_count[0] = count[2];
+	msd_a(a, b, next_count, ops);
+	next_count[0] = count[4];
+	msd_a(a, b, next_count, ops);
 }
 
 void	msd_b(t_list **a, t_list **b, int *s_mb, t_ops *operation)
@@ -61,7 +63,7 @@ void	msd_b(t_list **a, t_list **b, int *s_mb, t_ops *operation)
 	int	count[5];
 
 	size = s_mb[0];
-	if (size <= 8)
+	if (size <= 16)
 		return (small_sort_b(a, b, size, operation));
 	count[0] = 0;
 	count[1] = s_mb[1];
