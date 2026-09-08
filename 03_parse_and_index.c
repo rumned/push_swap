@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:12:04 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/06 19:04:23 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/08 20:03:20 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,40 +45,26 @@ void	index_stack(t_list **stack)
 	}
 }
 
-/* skip a leading or trailing flag argument when one is present */
-static void	trim_flags(char **args, int *start, int *end, t_mode mode)
+void	init_stack(t_list **stack, int ac, char **av)
 {
-	if (mode == DEFAULT)
-		return ;
-	if (is_flag(args[*start]) == mode)
-		(*start)++;
-	if (is_flag(args[*end]) == mode)
-		(*end)--;
-}
-
-void	init_stack(t_list **stack, int ac, char **av, t_mode mode)
-{
-	t_list	*new;
 	char	**args;
-	int		start;
-	int		end;
+	int		count;
+	int		i;
+	t_flags	skip;
 
-	args = av;
-	start = 1;
-	if (ac == 2)
+	skip.mode = DEFAULT;
+	skip.bench = 0;
+	args = build_args(ac, av);
+	if (!args)
+		ft_error("Error");
+	count = count_args(args);
+	extract_flags(args, &count, &skip);
+	i = 0;
+	while (i < count)
 	{
-		args = ft_split(av[1], ' ');
-		start = 0;
-	}
-	end = get_end_index(ac, args);
-	trim_flags(args, &start, &end, mode);
-	while (start <= end)
-	{
-		new = ft_lstnew_int(ft_atoi(args[start]));
-		ft_lstadd_back(stack, new);
-		start++;
+		ft_lstadd_back(stack, ft_lstnew_int(ft_atoi(args[i])));
+		i++;
 	}
 	index_stack(stack);
-	if (ac == 2)
-		ft_free(args);
+	ft_free(args);
 }

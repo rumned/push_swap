@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/06 18:51:31 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/08 20:00:28 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef enum e_mode
 	ADAPTIVE,
 	BENCH
 }	t_mode;
+
+typedef	struct s_flags
+{
+	t_mode	mode;
+	int		bench;
+}	t_flags;
+
 
 /* General utils*/
 void		ft_free(char **str);

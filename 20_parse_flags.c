@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 14:31:45 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/06 18:50:49 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/08 20:00:59 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,41 @@ int	get_end_index(int ac, char **args)
 	return (ac - 1);
 }
 
-void	extract_flags(char **args, int *start, int *end, t_mode *mode)
+static int	take_flag(char *arg, t_flags *flags)
 {
-	t_mode	flag_start;
-	t_mode	flag_end;
+	t_mode	flag;
 
-	flag_start = is_flag(args[*start]);
-	if (flag_start != DEFAULT)
+	flag = is_flag(arg);
+	if (flag == DEFAULT)
+		return (0);
+	if (flag == BENCH)
 	{
-		*mode = flag_start;
-		(*start)++;
+		if (flags->bench)
+			ft_error("Error");
+		flags->bench = 1;
+		return (1);
 	}
-	if (*mode == DEFAULT && *end >= *start)
+	if (flags->mode != DEFAULT)
+		ft_error("Error");
+	flags->mode = flag;
+	return (1);
+}
+
+void	extract_flags(char **args, int *count, t_flags *flags)
+{
+	int	i;
+	int	w;
+
+	i = 0;
+	w = 0;
+	while (i < *count)
 	{
-		flag_end = is_flag(args[*end]);
-		if (flag_end != DEFAULT)
-		{
-			*mode = flag_end;
-			(*end)--;
-		}
+		if (take_flag(args[i], flags))
+			free(args[i]);
+		else
+			args[w++] = args[i];
+		i++;
 	}
+	args[w] = NULL;
+	*count = w;
 }

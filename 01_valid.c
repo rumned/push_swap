@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 20:00:16 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/06 18:51:50 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/08 20:02:31 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,41 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-static int	ft_contains(long num, char **argv, int i)
+static int	ft_contains(long num, char **args, int i, int count)
 {
 	i++;
-	while (argv[i])
+	while (i < count)
 	{
-		if (ft_atoi(argv[i]) == num)
+		if (ft_atoi(args[i]) == num)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void	ft_check_args(int ac, char **av, t_mode *mode)
+void	ft_check_args(int ac, char **av, t_flags *flags)
 {
 	char	**args;
-	int		start;
-	int		end;
+	int		count;
+	int		i;
 	long	tmp;
 
-	args = av;
-	start = 1;
-	if (ac == 2)
+	args = build_args(ac, av);
+	if (!args)
+		ft_error("Error");
+	count = count_args(args);
+	extract_flags(args, &count, flags);
+	i = 0;
+	while (i < count)
 	{
-		args = ft_split(av[1], ' ');
-		start = 0;
-	}
-	end = get_end_index(ac, args);
-	extract_flags(args, &start, &end, mode);
-	while (start <= end)
-	{
-		tmp = ft_atoi(args[start]);
-		if (!ft_isnum(args[start]) || ft_contains(tmp, args, start))
+		tmp = ft_atoi(args[i]);
+		if (!ft_isnum(args[i]) || ft_contains(tmp, args, i, count))
 			ft_error("Error");
 		if (tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
-		start++;
+		i++;
 	}
-	if (ac == 2)
-		ft_free(args);
+	ft_free(args);
 }
 
 // if the stack is sorted, returns 1
