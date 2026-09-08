@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:00:28 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/08 21:23:18 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@ typedef struct s_operation
 	int	total;
 }		t_ops;
 
-typedef struct s_bench
-{
-	float	disorder;
-	char	*strategy;
-	char	*complex_class;
-}	t_bench;
-
 typedef enum e_mode
 {
 	DEFAULT = 0,
@@ -56,6 +49,14 @@ typedef enum e_mode
 	ADAPTIVE,
 	BENCH
 }	t_mode;
+
+typedef struct s_bench
+{
+	float	disorder;
+	char	*strategy;
+	char	*complex_class;
+	t_mode	mode;
+}	t_bench;
 
 typedef	struct s_flags
 {
@@ -70,13 +71,16 @@ int			is_sorted(t_list **stack);
 void		free_stack(t_list **stack);
 void		index_stack(t_list **stack);
 void		ft_error(char *msg);
-void		ft_check_args(int ac, char **av, t_mode *mode);
+void		ft_check_args(int ac, char **av, t_flags *flags);
 void		init_ops(t_ops *operation);
-void		init_stack(t_list **stack, int ac, char **av, t_mode mode);
+void		init_stack(t_list **stack, int ac, char **av);
 t_mode		is_flag(char *str);
-int			get_end_index(int ac, char **args);
-void		extract_flags(char **args, int *start, int *end,
-				t_mode *mode);
+char		**build_args(int ac, char **av);
+int			count_args(char **args);
+void		extract_flags(char **args, int *count, t_flags *flags);
+void		print_bench(t_ops *operation, t_bench *bench);
+void		print_ops(t_ops *operation);
+void		print_op(char *name, int count);
 
 /* Libft functions*/
 void		ft_putchar_fd(char c, int fd);
@@ -88,6 +92,8 @@ char		**ft_split(char const *s, char c);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 size_t		ft_strlen(const char *str);
 int			ft_strcmp(const char *s1, const char *s2);
+char		*ft_strdup(const char *s);
+char		*ft_strjoin(char const *s1, char const *s2);
 
 /* Operations */
 void		pa(t_list **stack_a, t_list **stack_b, t_ops *operation);
@@ -107,6 +113,7 @@ void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops);
 void		insertion_sort(t_list **a, t_list **b, t_ops *ops);
 void		chunk_sort(t_list **a, t_list **b, t_ops *operation);
 void		radix_mix(t_list **a, t_list **b, t_ops *operation);
+void		adaptive_sort(t_list **a, t_list **b, t_bench *bench, t_ops *ops);
 
 /* Algorithm utils*/
 int			pos_of_index(t_list *stack, int index);

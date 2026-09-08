@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/05 14:31:45 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/08 20:00:59 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/08 20:31:51 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ t_mode	is_flag(char *str)
 	if (ft_strcmp(str, "--bench") == 0)
 		return (BENCH);
 	return (DEFAULT);
-}
-
-int	get_end_index(int ac, char **args)
-{
-	int	end;
-
-	if (ac == 2)
-	{
-		end = 0;
-		while (args[end])
-			end++;
-		return (end - 1);
-	}
-	return (ac - 1);
 }
 
 static int	take_flag(char *arg, t_flags *flags)
