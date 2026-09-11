@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   last_complex_split.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/11 15:46:05 by nisim             #+#    #+#             */
+/*   Updated: 2026/09/11 15:50:59 by nisim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	next_position(t_pos current, int *data)
@@ -103,7 +115,7 @@ static void	recurse_quick(t_stack *stack, int size, t_pos current)
 void	dual_quicksort(t_list **a, t_list **b, t_ops *operation)
 {
 	t_stack	stack;
-	int	size;
+	int		size;
 
 	stack.a = *a;
 	stack.b = *b;

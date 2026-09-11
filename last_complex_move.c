@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   last_complex_move.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/11 15:45:34 by nisim             #+#    #+#             */
+/*   Updated: 2026/09/11 15:48:37 by nisim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	move_from_sa(t_list **a, t_list **b, t_ops *ops, t_pos to)
@@ -68,7 +80,6 @@ int	move_to(t_stack *stack, t_pos from, t_pos to)
 	move_from[END_A] = move_from_ea;
 	move_from[START_B] = move_from_sb;
 	move_from[END_B] = move_from_eb;
-
 	move_from[from](&stack->a, &stack->b, stack->operation, to);
 	return (1);
 }

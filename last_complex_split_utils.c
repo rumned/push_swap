@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   last_complex_split_utils.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/11 15:46:15 by nisim             #+#    #+#             */
+/*   Updated: 2026/09/11 15:51:30 by nisim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	get_max_start(t_list *head, int size)
@@ -16,7 +28,7 @@ static int	get_max_start(t_list *head, int size)
 	return (max);
 }
 
-static int	get_max_end(t_list * head, int size)
+static int	get_max_end(t_list *head, int size)
 {
 	int	max;
 
@@ -55,7 +67,6 @@ static int	get_tail_index(t_list *head)
 		head = head->next;
 	return (head->index);
 }
-
 
 int	get_next_index(t_stack *stack, t_pos current)
 {
