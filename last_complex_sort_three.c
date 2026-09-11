@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	sort_three_start_a(t_list **a, t_list **b, int, t_ops *ops)
+static void	sort_three_start_a(t_list **a, t_list **b, int max, t_ops *ops)
 {
 	(void)b;
 	if ((*a)->index == max)
@@ -20,7 +20,7 @@ static void	sort_three_start_a(t_list **a, t_list **b, int, t_ops *ops)
 		sa(a, ops, 1);
 }
 
-static void	sort_three_start_b(t_list **a, t_list **b, int, t_ops *ops)
+static void	sort_three_start_b(t_list **a, t_list **b, int max, t_ops *ops)
 {
 	pa(a, b, ops);
 	if ((*b)->index == max)
@@ -41,7 +41,7 @@ static void	sort_three_start_b(t_list **a, t_list **b, int, t_ops *ops)
 		sa(a, ops, 1);
 }
 
-static void	sort_three_end_a(t_list **a, t_list **b, int, t_ops *ops)
+static void	sort_three_end_a(t_list **a, t_list **b, int max, t_ops *ops)
 {
 	rra(a, ops);
 	rra(a, ops);
@@ -63,7 +63,7 @@ static void	sort_three_end_a(t_list **a, t_list **b, int, t_ops *ops)
 		sa(a, ops, 1);
 }
 
-static void	sort_three_end_b(t_list **a, t_list **b, int, t_ops *ops)
+static void	sort_three_end_b(t_list **a, t_list **b, int max, t_ops *ops)
 {
 	rrb(b, ops, 1);
 	rrb(a, ops, 1);
