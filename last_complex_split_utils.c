@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 15:46:15 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/11 15:51:30 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/11 18:41:55 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	get_next_index(t_stack *stack, t_pos current)
 {
 	int	next_index;
 
+	next_index = -1;
 	if (current == START_A)
 		next_index = stack->a->index;
 	else if (current == START_B)
