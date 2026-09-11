@@ -260,7 +260,7 @@ void	dual_split(t_stack *stack, int size, t_pos current, int *data)
 		else
 			data[0] += move_to(stack, current, (t_pos)data[3]);
 	}
-}	
+}
 
 void	dual_quicksort(t_list **a, t_list **b, t_ops *operation)
 {

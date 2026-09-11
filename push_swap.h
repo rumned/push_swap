@@ -64,6 +64,20 @@ typedef	struct s_flags
 	int		bench;
 }	t_flags;
 
+typedef struct s_stack
+{
+	t_list	*a;
+	t_list	*b;
+	t_ops	*operation;
+}	t_stack;
+
+typedef enum e_position
+{
+	START_A,
+	END_A,
+	START_B,
+	END_B
+}	t_pos;
 
 /* General utils*/
 void		ft_free(char **str);
@@ -112,7 +126,7 @@ void		ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
 void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops);
 void		insertion_sort(t_list **a, t_list **b, t_ops *ops);
 void		chunk_sort(t_list **a, t_list **b, t_ops *operation);
-void		radix_mix(t_list **a, t_list **b, t_ops *operation);
+void		dual_quicksort(t_list **a, t_list **b, t_ops *operation);
 void		adaptive_sort(t_list **a, t_list **b, t_bench *bench, t_ops *ops);
 
 /* Algorithm utils*/
@@ -129,12 +143,12 @@ int			pos_of_min(t_list *stack);
 int			insert_pos(t_list *a, int value);
 void		pop_phase(t_list **a, t_list **b, t_ops *operation);
 
-/* Radix testing*/
-void	radix_msd(t_list **a, t_list **b, t_ops *operation);
-void	msd_a(t_list **a, t_list **b, int *s_mb, t_ops *operation);
-void	msd_b(t_list **a, t_list **b, int *s_mb, t_ops *operation);
-void	small_sort_a(t_list **a, t_list **b, int size, t_ops *operation);
-void	small_sort_b(t_list **a, t_list **b, int size, t_ops *operation);
+/* Complex Algorithm*/
+int			move_to(t_stack *stack, t_pos from, t_pos to);
+int			get_max(t_stack *stack, int size, t_pos current);
+int			get_next_index(t_stack *stack, t_pos current);
+void		sort_three(t_stack *stack, t_pos current);
+void    	small_sort(t_stack *stack, int size, t_pos current);
 
 /* Edited libft functions */
 long		ft_atoi(const char *nptr);

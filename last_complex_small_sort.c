@@ -1,50 +1,31 @@
 #include "push_swap.h"
 
-void	sort_three_start_a(t_stack *stack, int max)
+static void    sort_one(t_stack *stack, t_pos current)
 {
-	if (stack->a->index == max)
-	{
-		sa(&stack->a, stack->operation, 1);
-		ra(&stack->a, stack->operation, 1);
-		sa(&stack->a, stack->operation, 1);
-		rra(&stack->a, stack->operation, 1);
-	}
-	else if (stack->a->next->index == max)
-	{
-		ra(&stack->a, stack->operation, 1);
-		sa(&stack->a, stack->operation, 1);
-		rra(&stack->a, stack->operation, 1);
-	}
-	sort_two(stack, START_A);
+    if (current == END_A || current == START_B || current == END_B)
+        move_to(stack, current, TOP_A);
+    return ;
 }
 
-void	sort_three_start_b(t_stack *stack, int max)
+static void    sort_two(t_stack *stack, t_pos current)
 {
-	if (stack->a->index == max)
-	{
+    if (current == END_A || current == START_B || current == END_B)
+    {
+        move_to(stack, current, TOP_A);
+        move_to(stack, current, TOP_A);
+    }
+    if (stack->a->index > stack->a->next->index)
 		sa(&stack->a, stack->operation, 1);
-		ra(&stack->a, stack->operation, 1);
-		sa(&stack->a, stack->operation, 1);
-		rra(&stack->a, stack->operation, 1);
-	}
-	else if (stack->a->next->index == max)
-	{
-		ra(&stack->a, stack->operation, 1);
-		sa(&stack->a, stack->operation, 1);
-		rra(&stack->a, stack->operation, 1);
-	}
-	sort_two(stack, START_A);
+    return ;
 }
 
-void	sort_three(t_stack *stack, t_pos current)
+void    small_sort(t_stack *stack, int size, t_pos current)
 {
-	void	(*sort_three_at[4])(t_stack *, int);
-	int		max;
-
-	sort_three_at[START_A] = sort_three_start_a;
-	sort_three_at[END_A] = sort_three_end_a;
-	sort_three_at[START_B] = sort_three_start_b;
-	sort_three_at[END_B] = sort_three_end_b;
-	max = get_max(stack, 3, current);
-	sort_three_pos[current](stack, max);
+    if (size == 3)
+        sort_three(stack, current);
+    else if (size == 2)
+        sort_two(stack, current);
+    else if (size == 1)
+        sort_one(stack, current);
+    return ;
 }
