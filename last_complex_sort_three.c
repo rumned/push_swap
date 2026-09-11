@@ -78,7 +78,7 @@ static void	sort_three_end_a(t_list **a, t_list **b, int max, t_ops *ops)
 static void	sort_three_end_b(t_list **a, t_list **b, int max, t_ops *ops)
 {
 	rrb(b, ops, 1);
-	rrb(a, ops, 1);
+	rrb(b, ops, 1);
 	if ((*b)->index == max)
 	{
 		pa(a, b, ops);
