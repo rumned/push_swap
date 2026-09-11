@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:22:17 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 21:24:05 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:24:26 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	adaptive_sort(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
 	else if (disorder >= 0.2 && disorder < 0.5)
 		chunk_sort(a, b, ops);
 	else if (disorder >= 0.5)
-		radix_mix(a, b, ops);
+		dual_quicksort(a, b, ops);
 }
 
 void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
@@ -48,7 +48,7 @@ void	sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops)
 	else if (bench->mode == MEDIUM)
 		chunk_sort(a, b, ops);
 	else if (bench->mode == COMPLEX)
-		radix_mix(a, b, ops);
+		dual_quicksort(a, b, ops);
 	else
 		adaptive_sort(a, b, bench, ops);
 }

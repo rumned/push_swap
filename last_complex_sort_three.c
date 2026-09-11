@@ -99,5 +99,5 @@ void	sort_three(t_stack *stack, t_pos current)
 	sort_three_at[START_B] = sort_three_start_b;
 	sort_three_at[END_B] = sort_three_end_b;
 	max = get_max(stack, 3, current);
-	sort_three_pos[current](&stack->a, &stack->b, max, stack->operation);
+	sort_three_at[current](&stack->a, &stack->b, max, stack->operation);
 }
