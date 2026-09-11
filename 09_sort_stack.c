@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/01 19:22:17 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/11 15:24:26 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/11 17:24:13 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	set_label(t_bench *bench)
 {
-	static char *const	names[] = {"adaptive", "insertion_sort",
-		"chunk_sort", "radix_mix", "adaptive"};
-	static char *const	classes[] = {"adaptive", "O(n^2)",
-		"O(n sqrt(n))", "O(n log n)", "adaptive"};
+	static char *const	names[] = {"adaptive", "Insertion sort",
+		"Chunk sort", "Quick sort", "adaptive"};
+	static char *const	classes[] = {"adaptive", "O(n²)",
+		"O(n√n))", "O(n log n)", "adaptive"};
 
 	if (bench->mode > ADAPTIVE)
 		bench->mode = DEFAULT;

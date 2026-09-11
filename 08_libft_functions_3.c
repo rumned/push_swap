@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 20:41:43 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:49:06 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:24:43 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	join[len_1] = '\0';
 	return (join);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	len;
+
+	if (!s)
+		return ;
+	len = 0;
+	while (s[len])
+		len++;
+	write(fd, s, len);
 }

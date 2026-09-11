@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:42:53 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 21:46:02 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:28:44 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ int	main(int ac, char **av)
 	bench = calc_disorder(*stack_a);
 	bench.mode = flags.mode;
 	sort_stack(stack_a, stack_b, &bench, &operation);
-	// print_list(*stack_a);
-	// print_op("disorder * 100: ", (int)(bench.disorder * 100));
 	if (flags.bench)
 		print_bench(&operation, &bench);
 	free_stacks(stack_a, stack_b);

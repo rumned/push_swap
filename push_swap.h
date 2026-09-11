@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 21:23:18 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:27:05 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_bench
 	t_mode	mode;
 }	t_bench;
 
-typedef	struct s_flags
+typedef struct s_flags
 {
 	t_mode	mode;
 	int		bench;
@@ -98,6 +98,7 @@ void		print_op(char *name, int count);
 
 /* Libft functions*/
 void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putendl_fd(char *s, int fd);
 int			ft_isdigit(unsigned char c);
@@ -148,7 +149,7 @@ int			move_to(t_stack *stack, t_pos from, t_pos to);
 int			get_max(t_stack *stack, int size, t_pos current);
 int			get_next_index(t_stack *stack, t_pos current);
 void		sort_three(t_stack *stack, t_pos current);
-void    	small_sort(t_stack *stack, int size, t_pos current);
+void		small_sort(t_stack *stack, int size, t_pos current);
 
 /* Edited libft functions */
 long		ft_atoi(const char *nptr);
