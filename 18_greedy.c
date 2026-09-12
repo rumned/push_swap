@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 21:40:00 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:18 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/12 17:47:43 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	greedy_pop(t_list **a, t_list **b, t_ops *operation)
 	while (*b)
 	{
 		cheapest(a, b, best);
-		c[1] = rot_cost(best[1], stack_size(*b));
 		c[0] = rot_cost(insert_pos(*a, node_at(*b, best[1])->value),
 				stack_size(*a));
+		c[1] = rot_cost(best[1], stack_size(*b));
 		shared_rot(a, b, c, operation);
 		solo_rot(a, b, c, operation);
 		pa(a, b, operation);
