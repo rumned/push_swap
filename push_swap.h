@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/11 17:27:05 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/12 22:17:25 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int			rot_cost(int pos, int size);
 int			abs_i(int n);
 int			combined(int ca, int cb);
 int			pos_of_min(t_list *stack);
-int			insert_pos(t_list *a, int value);
+int			find_insert_pos(t_list *a, int value);
 void		pop_phase(t_list **a, t_list **b, t_ops *operation);
 
 /* Complex Algorithm*/
