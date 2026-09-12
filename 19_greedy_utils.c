@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 23:01:54 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:11 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/12 19:06:54 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,50 +42,50 @@ int	combined(int ca, int cb)
 int	pos_of_min(t_list *stack)
 {
 	int	pos;
-	int	best;
+	int	best_pos;
 	int	best_val;
 
 	if (!stack)
 		return (-1);
 	pos = 0;
-	best = 0;
+	best_pos = 0;
 	best_val = stack->value;
 	while (stack)
 	{
 		if (stack->value < best_val)
 		{
 			best_val = stack->value;
-			best = pos;
+			best_pos = pos;
 		}
 		stack = stack->next;
 		pos++;
 	}
-	return (best);
+	return (best_pos);
 }
 
 /* where value belongs in a, which stays sorted but rotated */
 int	insert_pos(t_list *a, int value)
 {
 	int		pos;
-	int		best;
+	int		best_pos;
 	int		best_val;
 	t_list	*tmp;
 
 	tmp = a;
 	pos = 0;
-	best = -1;
+	best_pos = -1;
 	best_val = 0;
 	while (tmp)
 	{
-		if (tmp->value > value && (best == -1 || tmp->value < best_val))
+		if (tmp->value > value && (best_pos == -1 || tmp->value < best_val))
 		{
 			best_val = tmp->value;
-			best = pos;
+			best_pos = pos;
 		}
 		tmp = tmp->next;
 		pos++;
 	}
-	if (best == -1)
+	if (best_pos == -1)
 		return (pos_of_min(a));
-	return (best);
+	return (best_pos);
 }
