@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 21:40:00 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/12 17:47:43 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/12 19:37:06 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ static void	solo_rot(t_list **a, t_list **b, int c[2], t_ops *operation)
 
 static t_list	*node_at(t_list *stack, int pos)
 {
-	while (pos-- > 0 && stack)
+	while (pos > 0 && stack)
+	{
 		stack = stack->next;
+		pos--;
+	}
 	return (stack);
 }
 
