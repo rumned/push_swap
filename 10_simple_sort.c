@@ -6,13 +6,12 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 22:53:27 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:58 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/12 17:31:36 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* keep a maximal increasing run in a, push everything else to b */
 static void	extract_phase(t_list **a, t_list **b, t_ops *operation)
 {
 	int	i;
