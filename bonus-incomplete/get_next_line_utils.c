@@ -6,13 +6,13 @@
 /*   By: nisim <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 18:53:10 by nisim             #+#    #+#             */
-/*   Updated: 2026/08/09 15:38:05 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/14 20:01:08 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "bonus.h"
 
-int	ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -24,23 +24,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_findnl(char *s1)
-{
-	int		i;
-
-	i = 0;
-	if (!s1)
-		return (0);
-	while (s1[i])
-	{
-		if (s1[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*ft_strjoin_free(char *s1, char *s2)
+static char	*ft_strjoin_free(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -69,48 +53,29 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (str);
 }
 
-char	*ft_fetch_line(char *s1)
+char	*get_next_line(int fd)
 {
-	int		i;
-	char	*line;
+	char		*str;
+	char		*buf;
+	ssize_t		total_rbyte;
 
-	if (!s1 || *s1 == '\0')
+	if (fd < 0)
 		return (NULL);
-	i = 0;
-	while (s1[i] && s1[i] != '\n')
-		i++;
-	if (s1[i] == '\n')
-		i++;
-	line = malloc(sizeof(char) * (i + 1));
-	if (!line)
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
 		return (NULL);
-	line[i] = '\0';
-	while ((--i) >= 0)
-		line[i] = s1[i];
-	return (line);
-}
-
-char	*ft_strmove(char *s1)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	if (!s1 || !s1[i])
-		return (free(s1), NULL);
-	while (s1[i] && s1[i] != '\n')
-		i++;
-	if (!s1[i])
-		return (free(s1), NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) - i));
-	if (!str)
-		return (free(s1), NULL);
-	i++;
-	j = 0;
-	while (s1[i])
-		str[j++] = s1[i++];
-	str[j] = '\0';
-	free(s1);
+	total_rbyte = 1;
+	while (total_rbyte > 0)
+	{
+		total_rbyte = read(fd, buf, BUFFER_SIZE);
+		if (total_rbyte > 0)
+		{
+			buf[total_rbyte] = '\0';
+			str = ft_strjoin_free(str, buf);
+		}
+	}
+	free(buf);
+	if (total_rbyte < 0 || !str || *str == '\0')
+		return (free(str), str = NULL, NULL);
 	return (str);
 }
