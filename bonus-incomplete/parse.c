@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.h                                            :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/14 22:08:49 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/14 22:10:32 by nisim            ###   ########.fr       */
+/*   Created: 2026/09/14 22:08:32 by nisim             #+#    #+#             */
+/*   Updated: 2026/09/14 22:08:46 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BONUS_H
-# define BONUS_H
+#include "bonus.h"
 
-# include <unistd.h>
-# include <stdlib.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-#endif

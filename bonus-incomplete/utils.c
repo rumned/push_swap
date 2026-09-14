@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nisim <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 18:53:10 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/14 20:01:08 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/14 22:06:28 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,31 @@ char	*get_next_line(int fd)
 	if (total_rbyte < 0 || !str || *str == '\0')
 		return (free(str), str = NULL, NULL);
 	return (str);
+}
+
+void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+		free(str[i--]);
+	free(str);
+}
+
+void	free_stack(t_list **stack)
+{
+	t_list	*head;
+	t_list	*tmp;
+
+	head = *stack;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	free(stack);
 }
