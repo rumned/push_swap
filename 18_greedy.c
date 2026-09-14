@@ -17,13 +17,13 @@ static void	shared_rot(t_list **a, t_list **b, int c[2], t_ops *operation)
 {
 	while (c[0] > 0 && c[1] > 0)
 	{
-		rr(a, b, operation);
+		rr(a, b, operation, 1);
 		c[0]--;
 		c[1]--;
 	}
 	while (c[0] < 0 && c[1] < 0)
 	{
-		rrr(a, b, operation);
+		rrr(a, b, operation, 1);
 		c[0]++;
 		c[1]++;
 	}
@@ -86,7 +86,7 @@ void	greedy_pop(t_list **a, t_list **b, t_ops *operation)
 	int	c[2];
 
 	if (!*a)
-		pa(a, b, operation);
+		pa(a, b, operation, 1);
 	while (*b)
 	{
 		cheapest(a, b, best);
@@ -95,7 +95,7 @@ void	greedy_pop(t_list **a, t_list **b, t_ops *operation)
 		c[1] = rot_cost(best[1], stack_size(*b));
 		shared_rot(a, b, c, operation);
 		solo_rot(a, b, c, operation);
-		pa(a, b, operation);
+		pa(a, b, operation, 1);
 	}
 	c[0] = rot_cost(pos_of_min(*a), stack_size(*a));
 	c[1] = 0;

@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 16:36:03 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/12 22:17:25 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:33:36 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,17 @@ char		*ft_strdup(const char *s);
 char		*ft_strjoin(char const *s1, char const *s2);
 
 /* Operations */
-void		pa(t_list **stack_a, t_list **stack_b, t_ops *operation);
-void		pb(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		pa(t_list **stack_a, t_list **stack_b, t_ops *operation, int print);
+void		pb(t_list **stack_a, t_list **stack_b, t_ops *operation, int print);
 void		ra(t_list **stack, t_ops *operation, int print);
 void		rb(t_list **stack, t_ops *operation, int print);
-void		rr(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		rr(t_list **stack_a, t_list **stack_b, t_ops *operation, int print);
 void		rra(t_list **stack, t_ops *operation, int print);
 void		rrb(t_list **stack, t_ops *operation, int print);
-void		rrr(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		rrr(t_list **stack_a, t_list **stack_b, t_ops *operation, int print);
 void		sa(t_list **stack, t_ops *operation, int print);
 void		sb(t_list **stack, t_ops *operation, int print);
-void		ss(t_list **stack_a, t_list **stack_b, t_ops *operation);
+void		ss(t_list **stack_a, t_list **stack_b, t_ops *operation, int print);
 
 /* Algorithm functions */
 void		sort_stack(t_list **a, t_list **b, t_bench *bench, t_ops *ops);

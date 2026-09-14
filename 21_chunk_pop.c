@@ -84,14 +84,14 @@ void	pop_phase(t_list **a, t_list **b, t_ops *operation)
 		pos = pos_of_index(*b, mx);
 		if (can_park(a, b, parked, pos))
 		{
-			pa(a, b, operation);
+			pa(a, b, operation, 1);
 			ra(a, operation, 1);
 			parked++;
 		}
 		else
 		{
 			rotate_b_to(b, operation, pos);
-			pa(a, b, operation);
+			pa(a, b, operation, 1);
 		}
 	}
 	while (parked-- > 0)

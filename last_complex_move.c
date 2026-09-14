@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 15:45:34 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/11 18:41:35 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/14 19:33:12 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void	move_from_sa(t_list **a, t_list **b, t_ops *ops, t_pos to)
 {
 	if (to == START_B)
-		pb(a, b, ops);
+		pb(a, b, ops, 1);
 	else if (to == END_A)
 		ra(a, ops, 1);
 	else if (to == END_B)
 	{
-		pb(a, b, ops);
+		pb(a, b, ops, 1);
 		rb(b, ops, 1);
 	}
 }
@@ -28,12 +28,12 @@ static void	move_from_sa(t_list **a, t_list **b, t_ops *ops, t_pos to)
 static void	move_from_sb(t_list **a, t_list **b, t_ops *ops, t_pos to)
 {
 	if (to == START_A)
-		pa(a, b, ops);
+		pa(a, b, ops, 1);
 	else if (to == END_B)
 		rb(b, ops, 1);
 	else if (to == END_A)
 	{
-		pa(a, b, ops);
+		pa(a, b, ops, 1);
 		ra(a, ops, 1);
 	}
 }
@@ -45,12 +45,12 @@ static void	move_from_ea(t_list **a, t_list **b, t_ops *ops, t_pos to)
 	else if (to == START_B)
 	{
 		rra(a, ops, 1);
-		pb(a, b, ops);
+		pb(a, b, ops, 1);
 	}
 	else if (to == END_B)
 	{
 		rra(a, ops, 1);
-		pb(a, b, ops);
+		pb(a, b, ops, 1);
 		rb(b, ops, 1);
 	}
 }
@@ -62,12 +62,12 @@ static void	move_from_eb(t_list **a, t_list **b, t_ops *ops, t_pos to)
 	else if (to == START_A)
 	{
 		rrb(b, ops, 1);
-		pa(a, b, ops);
+		pa(a, b, ops, 1);
 	}
 	else if (to == END_A)
 	{
 		rrb(b, ops, 1);
-		pa(a, b, ops);
+		pa(a, b, ops, 1);
 		ra(a, ops, 1);
 	}
 }

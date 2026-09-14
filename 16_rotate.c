@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:41:24 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:29 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:32:35 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,14 @@ void	rb(t_list **stack, t_ops *operation, int print)
 	}
 }
 
-void	rr(t_list **stack_a, t_list **stack_b, t_ops *operation)
+void	rr(t_list **stack_a, t_list **stack_b, t_ops *operation, int print)
 {
 	ra(stack_a, operation, 0);
 	rb(stack_b, operation, 0);
-	write(1, "rr\n", 3);
-	operation->rr++;
-	operation->total++;
+	if (print)
+	{
+		write(1, "rr\n", 3);
+		operation->rr++;
+		operation->total++;
+	}
 }
