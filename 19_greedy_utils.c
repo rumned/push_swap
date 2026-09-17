@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 23:01:54 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/12 19:06:54 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/12 22:16:50 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	pos_of_min(t_list *stack)
 }
 
 /* where value belongs in a, which stays sorted but rotated */
-int	insert_pos(t_list *a, int value)
+int	find_insert_pos(t_list *a, int value)
 {
 	int		pos;
 	int		best_pos;

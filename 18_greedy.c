@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 21:40:00 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/12 17:47:43 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/12 22:17:07 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	shared_rot(t_list **a, t_list **b, int c[2], t_ops *operation)
 {
 	while (c[0] > 0 && c[1] > 0)
 	{
-		rr(a, b, operation);
+		rr(a, b, operation, 1);
 		c[0]--;
 		c[1]--;
 	}
 	while (c[0] < 0 && c[1] < 0)
 	{
-		rrr(a, b, operation);
+		rrr(a, b, operation, 1);
 		c[0]++;
 		c[1]++;
 	}
@@ -43,8 +43,11 @@ static void	solo_rot(t_list **a, t_list **b, int c[2], t_ops *operation)
 
 static t_list	*node_at(t_list *stack, int pos)
 {
-	while (pos-- > 0 && stack)
+	while (pos > 0 && stack)
+	{
 		stack = stack->next;
+		pos--;
+	}
 	return (stack);
 }
 
@@ -65,7 +68,7 @@ static void	cheapest(t_list **a, t_list **b, int best[2])
 	best[1] = 0;
 	while (tmp)
 	{
-		cost = combined(rot_cost(insert_pos(*a, tmp->value), size_a),
+		cost = combined(rot_cost(find_insert_pos(*a, tmp->value), size_a),
 				rot_cost(pos, size_b));
 		if (pos == 0 || cost < best[0])
 		{
@@ -83,16 +86,16 @@ void	greedy_pop(t_list **a, t_list **b, t_ops *operation)
 	int	c[2];
 
 	if (!*a)
-		pa(a, b, operation);
+		pa(a, b, operation, 1);
 	while (*b)
 	{
 		cheapest(a, b, best);
-		c[0] = rot_cost(insert_pos(*a, node_at(*b, best[1])->value),
+		c[0] = rot_cost(find_insert_pos(*a, node_at(*b, best[1])->value),
 				stack_size(*a));
 		c[1] = rot_cost(best[1], stack_size(*b));
 		shared_rot(a, b, c, operation);
 		solo_rot(a, b, c, operation);
-		pa(a, b, operation);
+		pa(a, b, operation, 1);
 	}
 	c[0] = rot_cost(pos_of_min(*a), stack_size(*a));
 	c[1] = 0;

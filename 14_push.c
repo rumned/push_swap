@@ -6,13 +6,13 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 19:09:36 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:38 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:31:27 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_list **stack_a, t_list **stack_b, t_ops *operation)
+void	pa(t_list **stack_a, t_list **stack_b, t_ops *operation, int print)
 {
 	t_list	*a;
 	t_list	*b;
@@ -29,12 +29,15 @@ void	pa(t_list **stack_a, t_list **stack_b, t_ops *operation)
 	if (a)
 		a->prev = b;
 	*stack_a = b;
-	write(1, "pa\n", 3);
-	operation->pa++;
-	operation->total++;
+	if (print)
+	{
+		write(1, "pa\n", 3);
+		operation->pa++;
+		operation->total++;
+	}
 }
 
-void	pb(t_list **stack_a, t_list **stack_b, t_ops *operation)
+void	pb(t_list **stack_a, t_list **stack_b, t_ops *operation, int print)
 {
 	t_list	*a;
 	t_list	*b;
@@ -51,7 +54,10 @@ void	pb(t_list **stack_a, t_list **stack_b, t_ops *operation)
 	if (b)
 		b->prev = a;
 	*stack_b = a;
-	write(1, "pb\n", 3);
-	operation->pb++;
-	operation->total++;
+	if (print)
+	{
+		write(1, "pb\n", 3);
+		operation->pb++;
+		operation->total++;
+	}
 }

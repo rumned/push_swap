@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 16:08:50 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:55 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:17:50 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	push_one(t_list **a, t_list **b, int st[3], t_ops *operation)
 
 	flush_pending(b, &st[2], operation);
 	index = (*a)->index;
-	pb(a, b, operation);
+	pb(a, b, operation, 1);
 	if (index < st[0] - (st[1] / 2))
 		st[2] = 1;
 }
@@ -49,7 +49,7 @@ static void	push_step(t_list **a, t_list **b, int st[3], t_ops *operation)
 	{
 		if (st[2])
 		{
-			rr(a, b, operation);
+			rr(a, b, operation, 1);
 			st[2] = 0;
 		}
 		else
