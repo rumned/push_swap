@@ -61,6 +61,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (NULL);
+	str = NULL;
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
@@ -104,5 +105,5 @@ void	free_stack(t_list **stack)
 		head = head->next;
 		free(tmp);
 	}
-	free(stack);
+	*stack = NULL;
 }

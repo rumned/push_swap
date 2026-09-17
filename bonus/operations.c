@@ -19,7 +19,7 @@ static void	push(t_stack *stack, char *op)
 
 	a = &stack->a;
 	b = &stack->b;
-	if (!ft_strcmp(op, "pa\n"))
+	if (!ft_strcmp(op, "pa"))
 		pa(a, b, NULL, 0);
 	else
 		pb(a, b, NULL, 0);
@@ -32,9 +32,9 @@ static void	swap(t_stack *stack, char *op)
 
 	a = &stack->a;
 	b = &stack->b;
-	if (!ft_strcmp(op, "sa\n"))
+	if (!ft_strcmp(op, "sa"))
 		sa(a, NULL, 0);
-	else if (!ft_strcmp(op, "sb\n"))
+	else if (!ft_strcmp(op, "sb"))
 		sb(b, NULL, 0);
 	else
 		ss(a, b, NULL, 0);
@@ -47,9 +47,9 @@ static void	rotate(t_stack *stack, char *op)
 
 	a = &stack->a;
 	b = &stack->b;
-	if (!ft_strcmp(op, "ra\n"))
+	if (!ft_strcmp(op, "ra"))
 		ra(a, NULL, 0);
-	else if (!ft_strcmp(op, "rb\n"))
+	else if (!ft_strcmp(op, "rb"))
 		rb(b, NULL, 0);
 	else
 		rr(a, b, NULL, 0);
@@ -62,36 +62,37 @@ static void	reverse_rotate(t_stack *stack, char *op)
 
 	a = &stack->a;
 	b = &stack->b;
-	if (!ft_strcmp(op, "rra\n"))
+	if (!ft_strcmp(op, "rra"))
 		rra(a, NULL, 0);
-	else if (!ft_strcmp(op, "rrb\n"))
+	else if (!ft_strcmp(op, "rrb"))
 		rrb(b, NULL, 0);
 	else
 		rrr(a, b, NULL, 0);
 }
 
-void	execute_operation(t_list **a, t_list **b, char **input)
+void	execute_operation(t_stack *stack, char **input)
 {
 	int		i;
-	t_stack	stack;
 
-	stack.a = *a;
-	stack.b = *b;
-	stack.operation = NULL;
 	i = 0;
-	while (input[i])
+	while (input && input[i])
 	{
-		if (!ft_strcmp(input[i], "pa\n") || !ft_strcmp(input[i], "pb\n"))
-			push(&stack, input[i]);
-		else if (!ft_strcmp(input[i], "sa\n") || !ft_strcmp(input[i], "sb\n")
-				|| !ft_strcmp(input[i], "ss\n"))
-			swap(&stack, input[i]);
-		else if (!ft_strcmp(input[i], "ra\n") || !ft_strcmp(input[i], "rb\n")
-				|| !ft_strcmp(input[i], "rr\n"))
-			rotate(&stack, input[i]);
-		else if (!ft_strcmp(input[i], "rra\n") || !ft_strcmp(input[i], "rrb\n")
-				|| !ft_strcmp(input[i], "rrr\n"))
-			reverse_rotate(&stack, input[i]);
+		if (!is_ops(input[i]))
+		{
+			write(2, "Error\n", 6);
+			exit(0);
+		}
+		if (!ft_strcmp(input[i], "pa") || !ft_strcmp(input[i], "pb"))
+			push(stack, input[i]);
+		else if (!ft_strcmp(input[i], "sa") || !ft_strcmp(input[i], "sb")
+				|| !ft_strcmp(input[i], "ss"))
+			swap(stack, input[i]);
+		else if (!ft_strcmp(input[i], "ra") || !ft_strcmp(input[i], "rb")
+				|| !ft_strcmp(input[i], "rr"))
+			rotate(stack, input[i]);
+		else if (!ft_strcmp(input[i], "rra") || !ft_strcmp(input[i], "rrb")
+				|| !ft_strcmp(input[i], "rrr"))
+			reverse_rotate(stack, input[i]);
 		i++;
 	}
 }
