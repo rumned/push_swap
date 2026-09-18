@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   21_chunk_pop.c                                     :+:      :+:    :+:   */
+/*   medium_pop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/04 23:02:34 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/09/08 20:48:13 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/09/18 15:16:03 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ static int	bottom_index(t_list *a)
 	return (a->index);
 }
 
-/*
-** a is held as a rotation of the sorted order: it climbs from the top, and
-** the parked nodes form a second climbing run at the bottom. Parking the top
-** of b keeps that shape only while bottom < b < top, and only pays off when
-** reaching the maximum costs more than the pa + ra + rra it replaces.
-*/
 static int	can_park(t_list **a, t_list **b, int parked, int pos)
 {
 	int	size;
