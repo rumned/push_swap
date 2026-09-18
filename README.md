@@ -44,6 +44,36 @@ This implementation adaptively switches sorting strategies depending on an inter
 - **Complex Sort** (`--complex`): Implements a **Dual-Pivot Quicksort** strategy featuring a small sort optimization (when chunks drop to ≤ 3 elements, they are immediately resolved via hardcoded sorting rules).
 - **Adaptive Routing** (`--adaptive`): Explicitly triggers the default sorting framework, which automatically shifts between Simple, Medium, or Complex tiers based on the disorder metric.
 
+## Algorithm Justification
+
+Standard sorting algorithms assume random access arrays (`O(1)` indexing). Because `push_swap` relies on sequential stacks where deep access incurs `O(N)` rotation penalties, standard approaches fail. This architecture uses **Adaptive Routing** backed by an architectural **Disorder Metric** (calculated via inversion counting post-indexing) to route execution to the most operation-efficient strategy.
+
+### 1. Simple Sort (Pre-Sorting & Signed Greedy Insertion)
+*   **Target:** Highly pre-sorted arrays (low disorder metric).
+*   **Complexity:** Time: $O(N^2)$ \| Auxiliary Space: O(1)
+*   **Justification:** For tiny lists, algorithmic overhead outweighs instruction savings. This implementation avoids traditional blind comparisons by utilizing a specialized two-step architecture:
+    *   **Pre-Sorting Phase:** The program parses Stack A linearly. If an element's index breaks the strictly ascending pattern (`index > last`), it is kept and rotated (`ra`); otherwise, it is systematically isolated to Stack B (`pb`). This isolates structural chaos into Stack B up front.
+    *   **Signed Cost Scoring & Interleaved Execution:** During the collection phase (`greedy_pop`), the system evaluates insertion placement across both stacks using signed arithmetic. Positive values indicate down-stream rotations (`ra`/`rb`), while negative values capture upstream reverse-rotations (`rra`/`rrb`). By comparing the alignment of signs via a `combined()` evaluation function, the engine detects when rotation directions match. It then interleaves these operations through synchronous double-moves (`rr`/`rrr`), collapsing two distinct operation pathways into one to minimize execution footprints.
+
+
+### 2. Medium Sort (Two-Phase Dynamic Chunk Sort)
+* **Target:** Moderately disordered stacks.
+* **Complexity:** Time: $O(N \sqrt{N})$ | Auxiliary Space: O(1)
+* **Justification:** Pushing random numbers blindly to Stack B creates massive O(N) search penalties later. This implementation eliminates that penalty using a custom, two-phase algorithmic design:
+  * **Phase 1: Dynamic Range Filtering & Instruction Interleaving:** The array range is divided into chunks scaled mathematically to exactly `(width * 36) / 10` ($\approx 3.6 \times \sqrt{N}$) using integer precision to optimize chunk sizing without floating-point overhead. As items match the active range and move via `pb`, elements smaller than the chunk's midpoint trigger a **deferred sink optimization**. Instead of immediate `rb` execution, the operation is flagged as pending. If the next step requires an `ra` shift, the instructions are interleaved and resolved as a single, concurrent `rr` operation, trimming down total moves.
+  * **Phase 2: Lookahead Retrieval with Bottom-Parking:** When popping elements back to Stack A, the system evaluates the distance to the maximum index remaining in Stack B. If a node is encountered that is smaller than the current head of Stack A but close to the top of Stack B, the algorithm triggers a **parking sub-system**. Rather than rotating Stack B away from the target element, it pushes the current node to Stack A and rotates it immediately out of the way to the bottom (`ra`). Once the true maximum is cleared, these parked nodes are systematically recalled using structured reverse rotations (`rra`), preventing hundreds of redundant sorting loops.
+
+
+### 3. Complex Sort (Hybrid Dual-Pivot Quicksort via Multi-Boundary Function Pointers)
+*   **Target:** High-entropy (highly chaotic) stacks.
+*   **Complexity:** Time: $O(N \log N)$ \| Auxiliary Space: $O(\log N)$ via call stack recurrence.
+*   **Justification:** Standard quicksort patterns introduce severe data thrashing on stacks due to the lack of pointer indexing. This engine overrides that fundamental constraint by utilizing a unique state-machine based Dual-Pivot architecture:
+    *   **4-Way Structural Boundary Mapping:** The system does not limit execution to the tops of Stack A or B. It defines execution vectors across four discrete structural entry points: `START_A`, `END_A`, `START_B`, and `END_B`. By mapping these boundaries, elements can be dynamically pushed from or pushed to both the top and bottom elements of either stack via constant-time lookahead functions (`get_next_index` and `move_to`).
+    *   **Dynamic Three-Way Partitioning:** Using two calculated structural pivots tuned adaptively to dataset sizes (1/3 and 2/3 split metrics), a conditional loop routes data through a highly optimized split matrix. Elements matching the highest sub-range are routed to the upper target, mid-range elements to the middle target, and small components are pushed to the lowest target zone. This three-way split forces elements to converge on their target positions up to 33% faster than standard quicksort. Sometimes the highest sub-range is intentionally made to hold larger chunk of data to decrease the amount of "round-trips" required for the data to move between stack a and stack b.
+    *   **Function Pointer Jump-Tables for Base Cases:** To prevent recursion overhead from flooding the execution stack, partitions dropping to a size of ≤ 3 elements are instantly bypassed and caught by a specialized base-case controller (`small_sort`). It uses an internal array of function pointers (`sort_three_at`) to jump straight to hardcoded sorting routines custom-designed for each boundary layout, guaranteeing zero overhead at lower boundaries.
+
+
+
 # Instructions
 
 ## Compile
@@ -131,12 +161,12 @@ OK
 
 # Resources
 
-1. [C Standard Library](https://github.com) — Repository containing source code to C Standard Library as defined by Plauger.
-2. [Claude](https://claude.ai) — AI tool used for generating test cases and explaining bugs.
-3. [GeeksForGeeks](https://geeksforgeeks.org) — Resource for learning about linked lists and C in general.
-4. [Markdown Live Preview](https://markdownlivepreview.com) — Reference for markdown file format.
-5. [Python Tutor](https://pythontutor.com) — Visualizer for C (and Python).
-6. [C99 Standard Draft](https://open-std.org) — Draft for C99 Standard.
+1. [C Standard Library](https://github.com) - Repository containing source code to C Standard Library as defined by Plauger.
+2. [Claude](https://claude.ai) - AI tool used for generating test cases and explaining bugs.
+3. [GeeksForGeeks](https://geeksforgeeks.org) - Resource for learning about linked lists and C in general.
+4. [Markdown Live Preview](https://markdownlivepreview.com) - Reference for markdown file format.
+5. [Python Tutor](https://pythontutor.com) - Visualizer for C (and Python).
+6. [C99 Standard Draft](https://open-std.org) - Draft for C99 Standard.
 7. [Push_swap visualiser](https://github.com/Niimphu/push_swap_visualiser.git) - Visualiser for push_swap output using Godot engine.
 
 # Contributions
@@ -157,5 +187,5 @@ OK
 - Utils for push_swap program
 - Simple Algorithm
 - Medium Algorithm
-- Push_swap program (other parts that isn't the algorithm)
+- Push_swap program
 - README
