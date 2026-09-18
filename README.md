@@ -138,3 +138,24 @@ OK
 5. [Python Tutor](https://pythontutor.com) — Visualizer for C (and Python).
 6. [C99 Standard Draft](https://open-std.org) — Draft for C99 Standard.
 7. [Push_swap visualiser](https://github.com/Niimphu/push_swap_visualiser.git) - Visualiser for push_swap output using Godot engine.
+
+# Contributions
+`nisim`:
+- Disorder metric
+- Bench
+- Data structure
+- Operations
+- Complex Algorithm
+- Bonus / Checker program
+- Makefile
+- README
+
+`mbin-mus`:
+- Input parsing and checking
+- Stack initialization
+- Flags handling
+- Utils for push_swap program
+- Simple Algorithm
+- Medium Algorithm
+- Push_swap program (other parts that isn't the algorithm)
+- README
