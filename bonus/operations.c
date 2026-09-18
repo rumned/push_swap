@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:10:06 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/14 19:59:05 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/18 16:19:26 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ void	execute_operation(t_stack *stack, char **input)
 		if (!ft_strcmp(input[i], "pa") || !ft_strcmp(input[i], "pb"))
 			push(stack, input[i]);
 		else if (!ft_strcmp(input[i], "sa") || !ft_strcmp(input[i], "sb")
-				|| !ft_strcmp(input[i], "ss"))
+			|| !ft_strcmp(input[i], "ss"))
 			swap(stack, input[i]);
 		else if (!ft_strcmp(input[i], "ra") || !ft_strcmp(input[i], "rb")
-				|| !ft_strcmp(input[i], "rr"))
+			|| !ft_strcmp(input[i], "rr"))
 			rotate(stack, input[i]);
 		else if (!ft_strcmp(input[i], "rra") || !ft_strcmp(input[i], "rrb")
-				|| !ft_strcmp(input[i], "rrr"))
+			|| !ft_strcmp(input[i], "rrr"))
 			reverse_rotate(stack, input[i]);
 		i++;
 	}

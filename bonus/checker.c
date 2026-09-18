@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/18 16:17:47 by nisim             #+#    #+#             */
+/*   Updated: 2026/09/18 16:19:46 by nisim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "bonus.h"
 
 void	init_both(t_stack *stack)
@@ -29,13 +41,13 @@ int	is_ops(char *input)
 	if (!ft_strcmp(input, "pa") || !ft_strcmp(input, "pb"))
 		return (1);
 	else if (!ft_strcmp(input, "sa") || !ft_strcmp(input, "sb")
-			|| !ft_strcmp(input, "ss"))
+		|| !ft_strcmp(input, "ss"))
 		return (1);
 	else if (!ft_strcmp(input, "ra") || !ft_strcmp(input, "rb")
-			|| !ft_strcmp(input, "rr"))
+		|| !ft_strcmp(input, "rr"))
 		return (1);
 	else if (!ft_strcmp(input, "rra") || !ft_strcmp(input, "rrb")
-			|| !ft_strcmp(input, "rrr"))
+		|| !ft_strcmp(input, "rrr"))
 		return (1);
 	return (0);
 }
