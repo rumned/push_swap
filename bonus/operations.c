@@ -6,7 +6,7 @@
 /*   By: nisim <nisim@student.42penang.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/14 17:10:06 by nisim             #+#    #+#             */
-/*   Updated: 2026/09/18 16:19:26 by nisim            ###   ########.fr       */
+/*   Updated: 2026/09/21 15:41:35 by nisim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	execute_operation(t_stack *stack, char **input)
 		if (!is_ops(input[i]))
 		{
 			write(2, "Error\n", 6);
+			free_all(&stacks, input);
 			exit(0);
 		}
 		if (!ft_strcmp(input[i], "pa") || !ft_strcmp(input[i], "pb"))
