@@ -2,7 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-void generate_unique_randoms(int count, int min, int max) {
+static int compare_ints(const void *a, const void *b) {
+    int x = *(const int *)a;
+    int y = *(const int *)b;
+    return (x > y) - (x < y);
+}
+
+void generate_partially_sorted(int count, int min, int max, double sorted_ratio) {
     int range_size = max - min + 1;
 
     // Validate inputs
@@ -19,6 +25,14 @@ void generate_unique_randoms(int count, int min, int max) {
         return;
     }
 
+    // Accept either 0.8 or 80 for 80%
+    if (sorted_ratio > 1.0)
+        sorted_ratio /= 100.0;
+    if (sorted_ratio < 0.0 || sorted_ratio > 1.0) {
+        fprintf(stderr, "Error: Sorted ratio must be between 0 and 1 (or 0 and 100).\n");
+        return;
+    }
+
     // Allocate array for the range pool
     int *pool = malloc(range_size * sizeof(int));
     if (!pool) {
@@ -31,16 +45,21 @@ void generate_unique_randoms(int count, int min, int max) {
         pool[i] = min + i;
     }
 
-    // Partial Fisher-Yates shuffle: shuffle only 'count' elements
+    // Partial Fisher-Yates shuffle: the first 'count' elements become
+    // a random selection of unique values in random order
     for (int i = 0; i < count; i++) {
         int j = i + rand() % (range_size - i);
-        
-        // Swap pool[i] and pool[j]
         int temp = pool[i];
         pool[i] = pool[j];
         pool[j] = temp;
+    }
 
-        // Print directly separated by whitespace
+    // Sort only the first 'sorted_count' elements; the rest stay shuffled
+    int sorted_count = (int)(count * sorted_ratio + 0.5);
+    qsort(pool, sorted_count, sizeof(int), compare_ints);
+
+    // Print separated by whitespace
+    for (int i = 0; i < count; i++) {
         printf("%d ", pool[i]);
     }
     printf("\n");
@@ -53,11 +72,12 @@ int main(void) {
     srand((unsigned int)time(NULL));
 
     // Configuration parameters
-    int count = 500; // Number of integers to generate
-    int min = 0;    // Minimum value (inclusive)
-    int max = 10000;   // Maximum value (inclusive)
+    int count = 500;           // Number of integers to generate
+    int min = 0;               // Minimum value (inclusive)
+    int max = 10000;           // Maximum value (inclusive)
+    double sorted_ratio = 0.8; // Portion sorted from the start (0.8 or 80)
 
-    generate_unique_randoms(count, min, max);
+    generate_partially_sorted(count, min, max, sorted_ratio);
 
     return 0;
 }
