@@ -6,7 +6,7 @@
 /*   By: mbin-mus <mbin-mus@student.42penang.edu    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 15:51:38 by mbin-mus          #+#    #+#             */
-/*   Updated: 2026/10/18 15:51:41 by mbin-mus         ###   ########.fr       */
+/*   Updated: 2026/10/28 20:09:41 by mbin-mus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,54 @@ void generate_partially_sorted(int count, int min, int max, double sorted_ratio)
         pool[j] = temp;
     }
 
-    // Sort only the first 'sorted_count' elements; the rest stay shuffled
-    int sorted_count = (int)(count * sorted_ratio + 0.5);
-    qsort(pool, sorted_count, sizeof(int), compare_ints);
+    // Sort the selected values ascending; pool[0..count-1] is now the
+    // list of values still available to place, smallest first
+    qsort(pool, count, sizeof(int), compare_ints);
+
+    // Number of inversions (pairs with a[i] > a[j], i < j) needed so that
+    // disorder = inversions / total_pairs = 1 - sorted_ratio
+    long total_pairs = (long)count * (count - 1) / 2;
+    long target = (long)((1.0 - sorted_ratio) * total_pairs + 0.5);
+
+    int *result = malloc(count * sizeof(int));
+    if (!result) {
+        fprintf(stderr, "Error: Memory allocation failed.\n");
+        free(pool);
+        return;
+    }
+
+    // Fill positions left to right. Picking the c-th smallest remaining
+    // value puts exactly c smaller values after it, i.e. c inversions.
+    // Every possible inversion (total_pairs of them) is accepted with
+    // probability target / slots_left, so exactly 'target' are accepted
+    // and they are spread evenly across all positions.
+    long slots_left = total_pairs;
+    int remaining = count;
+    for (int i = 0; i < count; i++) {
+        int c = 0;
+        for (int s = 0; s < remaining - 1; s++) {
+            if (rand() % slots_left < target) {
+                c++;
+                target--;
+            }
+            slots_left--;
+        }
+
+        result[i] = pool[c];
+        // Remove the used value from the remaining list
+        for (int j = c; j < remaining - 1; j++) {
+            pool[j] = pool[j + 1];
+        }
+        remaining--;
+    }
 
     // Print separated by whitespace
     for (int i = 0; i < count; i++) {
-        printf("%d ", pool[i]);
+        printf("%d ", result[i]);
     }
     printf("\n");
 
+    free(result);
     free(pool);
 }
 
@@ -87,7 +125,7 @@ int main(void) {
     int count = 500;           // Number of integers to generate
     int min = 0;               // Minimum value (inclusive)
     int max = 10000;           // Maximum value (inclusive)
-    double sorted_ratio = 0.8; // Portion sorted from the start (0.8 or 80)
+    double sorted_ratio = 0; // 1 = ascending (disorder 0), 0 = descending (disorder 1)
 
     generate_partially_sorted(count, min, max, sorted_ratio);
 

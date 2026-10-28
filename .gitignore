@@ -4,3 +4,5 @@ checker_Mac
 checker_linux
 PushSwapVisualizer.app
 PushSwapVisualiser.app/
+*.out
+*.txt
